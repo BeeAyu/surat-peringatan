@@ -356,7 +356,7 @@ body {
 <body>
 
 <header class="top">
-    <h1>APLIKASI SURAT PERINGATAN</h1>
+    <h1>SURAT PERINGATAN</h1>
     <div>PT BPR BKK WONOGIRI (Perseroda)</div>
 </header>
 
@@ -470,7 +470,7 @@ body {
 
     <div class="field">
         <label for="persen">Denda (%)</label>
-        <input id="persen" type="number" min="0" step="0.01" value="0.5">
+        <input id="persen" type="number" min="0" step="0.01" value="2.50">
     </div>
 
     <div class="field">
@@ -934,7 +934,7 @@ $('reset').addEventListener('click', () => {
     $('hpDebitur').value = '';
     $('pokok').value = 119985000;
     $('bunga').value = 220850000;
-    $('persen').value = 0.5;
+    $('persen').value = 2.50;
     $('nominalDenda').value = '';
     $('hari').value = 7;
     $('tglBatas').value = addDays(dateNow(), 7);
