@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Surat Peringatan | PT BPR BKK Wonogiri (Perseroda)</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#edf1f5;color:#111;font-family:Arial,sans-serif}.top{background:#153b62;color:#fff;padding:18px;text-align:center}.top h1{font-size:22px;margin:0 0 5px}.layout{max-width:1300px;margin:20px auto;padding:0 14px;display:grid;grid-template-columns:340px minmax(0,1fr);gap:18px;align-items:start}.form{background:#fff;padding:18px;border-radius:10px;box-shadow:0 4px 18px #0001}.form h2{font-size:18px;margin:0 0 16px;color:#153b62}.sect{font-size:12px;font-weight:bold;color:#1769aa;border-bottom:1px solid #ddd;padding:13px 0 6px;margin-bottom:10px;letter-spacing:.5px}.field{margin-bottom:11px}.field label{display:block;font-size:12px;font-weight:bold;margin-bottom:5px}.field input,.field select,.field textarea{width:100%;padding:9px;border:1px solid #cbd5e1;border-radius:5px;font:14px Arial,sans-serif}.field small{display:block;color:#64748b;font-size:11px;margin-top:5px;line-height:1.4}.buttons{display:flex;gap:8px;margin-top:16px}.buttons button{flex:1;padding:11px;border:0;border-radius:5px;cursor:pointer;font-weight:bold}.print{background:#1769aa;color:#fff}.reset{background:#e5eaf0}.preview{overflow:auto}.paper{width:210mm;min-height:297mm;background:#fff;margin:0 auto;padding:17mm 19mm 15mm;font:11pt/1.35 "Times New Roman",serif}.letterhead{border-bottom:3px double #111;padding-bottom:8px;margin-bottom:13px}.brand-row{display:flex;align-items:center;justify-content:center;gap:14px;min-height:75px}.logo{display:block;flex:0 0 68px;width:68px;height:68px;max-width:68px;max-height:68px;object-fit:contain;margin:0}.brand-text{flex:0 1 auto;min-width:0;text-align:center}.company{font:bold 15pt Arial,sans-serif;text-align:center;margin:0 0 3px}.office{text-align:center;font-weight:bold;margin:0 0 2px}.officeaddr{text-align:center;font-size:9.5pt;margin:0 0 7px}.logo-status{font-size:10px;color:#666;text-align:center;margin-bottom:3px}.headgrid{display:grid;grid-template-columns:1fr 1fr;border:1px solid #777;margin-bottom:18px;font-size:10.5pt;min-height:18mm}.headleft{padding:5px 8px;border-right:1px solid #777}.headright{padding:5px 8px;text-align:right;overflow-wrap:anywhere}.meta-row{display:grid;grid-template-columns:58px 10px 1fr}.letter p{margin:0 0 9px;text-align:justify}.debt{width:76%;border-collapse:collapse;margin:10px 0 6px}.debt td{padding:2px 0;vertical-align:top}.debt td:nth-child(2){width:18px;text-align:center}.debt td:last-child{text-align:right;white-space:nowrap}.debt .sum td{font-weight:bold;border-top:1px solid #111;padding-top:4px}.terbilang{margin:7px 0 17px;font-style:italic}.date-right{text-align:right;margin:0 0 14px}.sign{width:53%;margin:16px 0 0 auto;text-align:center;page-break-inside:avoid}.sign .space{height:48px}.sign .name{text-decoration:underline;font-weight:bold}.copy{margin-top:13px;font-size:10pt}.copy p{margin:0 0 2px}.note{margin-top:12px;font-size:10pt}.note p{margin:0 0 5px}.small{font-size:10pt}@media(max-width:900px){.layout{grid-template-columns:1fr}.preview{overflow:auto}.paper{margin:0 auto}}@media(max-width:520px){.brand-row{gap:8px}.logo{flex-basis:55px;width:55px;height:55px}.company{font-size:12pt}.office{font-size:9pt}.officeaddr{font-size:8pt}}@page{size:A4;margin:0}@media print{body{background:#fff}.top,.form{display:none!important}.layout{display:block;margin:0;padding:0}.preview{overflow:visible}.paper{margin:0;width:210mm;min-height:297mm;padding:17mm 19mm 15mm;box-shadow:none;page-break-after:avoid}.headgrid,.sign,.debt,.brand-row{break-inside:avoid}.logo-status{display:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><h1>APLIKASI SURAT PERINGATAN</h1><div>PT BPR BKK WONOGIRI (Perseroda)</div></header>
+<div class="layout">
+<section class="form">
+<h2>Input Data Surat</h2>
+<div class="sect">INFORMASI SURAT</div>
+<div class="field"><label>Jenis Surat</label><select id="jenis"><option value="I">SP I</option><option value="II">SP II</option><option value="III">SP III</option></select></div>
+<div class="field"><label>Nomor Surat</label><input id="noSurat" placeholder="Contoh: 001/SP/I/2026"></div>
+<div class="field"><label>Tanggal Surat / Posisi Tanggal</label><input id="tglSurat" type="date"></div>
+<div class="field"><label>Lampiran</label><input id="lampiran" value="-"></div>
+<div class="field"><label>Nomor SPK</label><input id="noSPK"></div>
+<div class="field"><label>Tanggal SPK</label><input id="tglSPK" type="date"></div>
+<div class="sect">KANTOR PENERBIT</div>
+<div class="field"><label>Pilih Kantor</label><select id="kantor"></select></div>
+<div class="field"><label>Alamat Kantor</label><input id="alamatKantor"></div>
+<div class="field"><label>Nama Pemimpin Cabang</label><input id="pemimpin"></div>
+<div class="field"><label>Jabatan Penandatangan</label><input id="jabatan" value="Direktur"></div>
+<div class="field"><label>Nomor HP / Telepon Kantor</label><input id="hpKantor" placeholder="Otomatis sesuai kantor atau isi manual"><small>Nomor otomatis mengikuti kantor yang dipilih dan bisa diedit manual. Nomor ditampilkan pada catatan surat.</small></div>
+<div class="sect">DATA DEBITUR</div>
+<div class="field"><label>Kepada Yth. Bapak/Ibu</label><input id="nama" placeholder="Nama debitur"></div>
+<div class="field"><label>Nama Pemilik Agunan</label><input id="namaAgunan" placeholder="Nama pemilik agunan"><small>Hasil tembusan akan menjadi "Atas Nama (nama agunan)". Jika kosong, hasilnya "Atas Nama (-)". Data disimpan otomatis saat diketik.</small></div>
+<div class="field"><label>Alamat Debitur</label><textarea id="alamatDebitur" rows="2"></textarea></div>
+<div class="field"><label>Nomor Rekening</label><input id="rekening"></div>
+<div class="field"><label>Nomor HP Debitur</label><input id="hpDebitur"></div>
+<div class="sect">RINCIAN TUNGGAKAN</div>
+<div class="field"><label>Tunggakan Pokok (Rp)</label><input id="pokok" type="number" min="0" value="119985000"></div>
+<div class="field"><label>Tunggakan Bunga (Rp)</label><input id="bunga" type="number" min="0" value="220850000"></div>
+<div class="field"><label>Denda (%) — perhitungan otomatis</label><input id="persen" type="number" min="0" step="0.01" value="0.5"></div>
+<div class="field"><label>Nominal Denda Manual (Rp)</label><input id="nominalDenda" type="number" min="0" step="1" placeholder="Kosongkan untuk otomatis"><small>Jika diisi, nominal ini digunakan sebagai denda. Jika kosong, denda dihitung otomatis berdasarkan persentase.</small></div>
+<div class="sect">BATAS WAKTU</div>
+<div class="field"><label>Paling Lambat (jumlah hari)</label><input id="hari" type="number" min="0" value="7"></div>
+<div class="field"><label>Tanggal Paling Lambat</label><input id="tglBatas" type="date"></div>
+<div class="buttons"><button class="reset" id="reset" type="button">Reset</button><button class="print" type="button" onclick="window.print()">Cetak / Simpan PDF</button></div>
+<p class="small">Data formulir disimpan otomatis di browser ini dan akan tetap tersedia setelah halaman direfresh. Tombol Reset akan menghapus data tersimpan.</p>
+</section>
+<div class="preview"><article class="paper" id="paper">
+<div class="letterhead"><div class="brand-row"><img class="logo" id="logoBPR" src="assets/logo.png" alt="Logo PT BPR BKK Wonogiri" data-logo-index="0" onerror="cobaLogoBerikutnya(this)"><div class="brand-text"><h1 class="company">PT BPR BKK WONOGIRI (Perseroda)</h1><p class="office" id="pKantor">Kantor Pusat Operasional</p><p class="officeaddr" id="pAlamatKantor">Jalan Jenderal Sudirman No. 234, Wonogiri</p></div></div><div id="logoStatus" class="logo-status"></div></div>
+<div class="headgrid"><div class="headleft"><div class="meta-row"><span>Nomor</span><span>:</span><span id="pNoSurat">-</span></div><div class="meta-row"><span>Lampiran</span><span>:</span><span id="pLampiran">-</span></div><div class="meta-row"><span>Perihal</span><span>:</span><strong id="pPerihal">Surat Peringatan I</strong></div></div><div class="headright">Kepada Yth. Bapak/Ibu:<br><strong id="pNama">................................</strong><br><span id="pAlamatDebitur"></span></div></div>
+<p class="date-right" id="pTanggal"></p>
+<div class="letter"><p>Dengan hormat,</p>
+<p style="text-indent:28px">Menunjuk Surat Perjanjian Kredit Nomor <strong id="pSPK">-</strong> tanggal <strong id="pTglSPK">-</strong>, melalui surat ini kami memberitahukan bahwa fasilitas Saudara dengan nomor rekening <strong id="pRekening">-</strong>, menurut catatan administrasi yang ada pada sistem kami posisi tanggal <strong id="pPosisi">-</strong>, Saudara mempunyai tunggakan pembayaran kredit sebagai berikut:</p>
+<table class="debt"><tr><td>Tunggakan Pokok</td><td>:</td><td id="pPokok">Rp 119.985.000</td></tr><tr><td>Tunggakan Bunga</td><td>:</td><td id="pBunga">Rp 220.850.000</td></tr><tr><td>Denda</td><td>:</td><td id="pDenda">Rp 1.704.175</td></tr><tr class="sum"><td>Total Tunggakan</td><td>:</td><td id="pTotal">Rp 342.539.175</td></tr></table>
+<p class="terbilang" id="pTerbilang">Terbilang: ................................</p>
+<p style="text-indent:28px">Berdasarkan hal tersebut di atas, untuk menghindari bertambahnya beban bunga dan denda kredit serta untuk menjaga reputasi perbankan Saudara tetap terjaga dengan baik, kami harap Saudara <strong>SEGERA</strong> menyelesaikan seluruh kewajiban sebagaimana tersebut di atas paling lambat hari <strong id="pHariTanggal">-</strong>.</p>
+<p style="text-indent:28px">Demikian <strong id="pPerihalIsi">Surat Peringatan I</strong> ini disampaikan untuk menjadi perhatian, dan atas kerja sama yang baik disampaikan terima kasih.</p></div>
+<div class="sign"><div id="pKotaTanggal">Wonogiri, ................</div><strong>PT BPR BKK WONOGIRI (Perseroda)</strong><br><strong id="pKantorSign">Kantor Pusat Operasional</strong><div class="space"></div><div class="name" id="pPemimpin">................................</div><div id="pJabatan">Direktur</div></div>
+<div class="copy"><strong>Tembusan:</strong><p>1. Pemilik Agunan (<strong id="pNamaAgunan">Atas Nama (-)</strong>)</p><p>2. Arsip.</p></div>
+<div class="note"><p><strong>Catatan:</strong> Jika Saudara telah membayar kekurangan atau mengirimkan pembayaran tersebut di atas, mohon segera menghubungi kami melalui No HP <span id="pHPKontak">................</span>.</p><p><i>*) Perhitungan tersebut di atas belum termasuk kewajiban sampai dengan jatuh tempo.</i></p></div>
+</article></div></div>
+<script>
+const $=id=>document.getElementById(id);
+const STORAGE_KEY='suratPeringatanBPR_data_v1';
+const daftarLogo=['assets/logo.png','assets/logo-bpr.png','assets/logo.jpg','assets/logo.jpeg','assets/logo-bpr.jpg','assets/logo-bpr.jpeg','assets/logo-kantor.png','assets/logo-kantor.jpg','assets/Logo.png','assets/Logo BPR.png','assets/Logo Emblem.png'];
+function cobaLogoBerikutnya(img){const i=Number(img.dataset.logoIndex||0)+1;img.dataset.logoIndex=i;if(i<daftarLogo.length)img.src=daftarLogo[i];else{img.style.display='none';$('logoStatus').textContent='';console.warn('Logo tidak ditemukan. Periksa folder assets.');}}
+const offices={
+'Kantor Pusat Operasional':{alamat:'Jalan Jenderal Sudirman No. 234, Wonogiri',pemimpin:'DWI PRIHARINI, SE',kota:'Wonogiri',hp:'0273-321000'},
+'Kantor Cabang Ngadirojo':{alamat:'Jl. Kepodang No. 4 Ngadirojo 57681 Tlp. 0273.5327108',pemimpin:'TOTOK GATOT WALUYO, SE',kota:'Ngadirojo',hp:'081234567801'},
+'Kantor Cabang Girimarto':{alamat:'Jl. Sinuwun No. 29 Tambak Merang, Girimarto Telp. 0273-5316114',pemimpin:'BUDI PURWANTOR, SE',kota:'Girimarto',hp:'081234567802'},
+'Kantor Cabang Jatipurno':{alamat:'Jl. Arjuno No. 20 Jatipurno, Wonogiri',pemimpin:'PUGUH ALDOKO P',kota:'Jatipurno',hp:'081234567803'},
+'Kantor Cabang Jatiroto':{alamat:'Jl. Raya Jatiroto No. 68 Jatiroto, Wonogiri',pemimpin:'UMAYA ISMARWATI',kota:'Jatiroto',hp:'081234567804'},
+'Kantor Cabang Slogohimo':{alamat:'Jl. Pungawan No. 1 Slogohimo, Wonogiri',pemimpin:'YETTY DWIAN APRIANTARI',kota:'Slogohimo',hp:'081234567805'},
+'Kantor Cabang Purwantoro':{alamat:'Jl. Pemuda No. 35 Purwantoro, Wonogiri',pemimpin:'TEGUH SUMARTONO',kota:'Purwantoro',hp:'081234567806'},
+'Kantor Cabang Tirtomoyo':{alamat:'Jl. Raya Tirtomoyo No. 51 Tirtomoyo, Wonogiri',pemimpin:'SURJANA',kota:'Tirtomoyo',hp:'081234567807'},
+'Kantor Cabang Baturetno':{alamat:'Jl. Raya Baturetno - Wonogiri',pemimpin:'SUSILO',kota:'Baturetno',hp:'081234567808'},
+'Kantor Cabang Batuwarno':{alamat:'Jl. Raya Batuwarno - Karangtengah Km 12 Telp. 0273-3302666',pemimpin:'ANOM EKO BAWONO',kota:'Batuwarno',hp:'081234567809'},
+'Kantor Cabang Giriwoyo':{alamat:'Jl. Wijaya Kusuma No. 94 Giriwoyo, Wonogiri',pemimpin:'ENDANG SUHARNIATI',kota:'Giriwoyo',hp:'081234567810'},
+'Kantor Cabang Giritontro':{alamat:'Jl. Raya Giritontro, Wonogiri',pemimpin:'ARWINTO ADI',kota:'Giritontro',hp:'081234567811'}};
+function dateNow(){const d=new Date(),x=new Date(d.getTime()-d.getTimezoneOffset()*60000);return x.toISOString().slice(0,10)}
+function addDays(v,n){if(!v)return '';const d=new Date(v+'T12:00:00');d.setDate(d.getDate()+n);const x=new Date(d.getTime()-d.getTimezoneOffset()*60000);return x.toISOString().slice(0,10)}
+function tanggal(v,weekday=false){if(!v)return '-';return new Date(v+'T12:00:00').toLocaleDateString('id-ID',{...(weekday?{weekday:'long'}:{}),day:'2-digit',month:'long',year:'numeric'})}
+function rp(v){return 'Rp '+Math.round(v||0).toLocaleString('id-ID')}
+function terbilang(value){let n=Math.floor(Math.abs(value));const kata=['','satu','dua','tiga','empat','lima','enam','tujuh','delapan','sembilan','sepuluh','sebelas'];function sebut(x){if(x<12)return kata[x];if(x<20)return sebut(x-10)+' belas';if(x<100)return sebut(Math.floor(x/10))+' puluh '+sebut(x%10);if(x<200)return 'seratus '+sebut(x-100);if(x<1000)return sebut(Math.floor(x/100))+' ratus '+sebut(x%100);if(x<2000)return 'seribu '+sebut(x-1000);if(x<1e6)return sebut(Math.floor(x/1000))+' ribu '+sebut(x%1000);if(x<1e9)return sebut(Math.floor(x/1e6))+' juta '+sebut(x%1e6);if(x<1e12)return sebut(Math.floor(x/1e9))+' miliar '+sebut(x%1e9);if(x<1e15)return sebut(Math.floor(x/1e12))+' triliun '+sebut(x%1e12);return String(x)}return(n===0?'nol':sebut(n)).replace(/\s+/g,' ').trim()+' rupiah'}
+function saveForm(){const data={};document.querySelectorAll('.form input,.form select,.form textarea').forEach(e=>{if(e.id)data[e.id]=e.value});try{localStorage.setItem(STORAGE_KEY,JSON.stringify(data))}catch(e){console.warn('Data tidak bisa disimpan di browser.',e)}}
+function loadForm(){try{const raw=localStorage.getItem(STORAGE_KEY);if(!raw)return false;const data=JSON.parse(raw);Object.entries(data).forEach(([id,v])=>{const el=$(id);if(el&&id!=='kantor'&&v!==undefined)el.value=v});if(data.kantor&&offices[data.kantor])$('kantor').value=data.kantor;return true}catch(e){console.warn('Data tersimpan tidak dapat dibaca.',e);return false}}
+function setupOffices(){Object.keys(offices).forEach(name=>{const o=document.createElement('option');o.value=name;o.textContent=name;$('kantor').appendChild(o)});$('kantor').value='Kantor Pusat Operasional';selectOffice(false)}
+function selectOffice(save=true){const d=offices[$('kantor').value];if(!d)return;$('alamatKantor').value=d.alamat||'';$('pemimpin').value=d.pemimpin||'';$('hpKantor').value=d.hp||'';update();if(save)saveForm()}
+function update(){
+const officeName=$('kantor').value,officeData=offices[officeName]||{},jenis=$('jenis').value;
+const pokok=Math.max(0,Number($('pokok').value)||0),bunga=Math.max(0,Number($('bunga').value)||0),persen=Math.max(0,Number($('persen').value)||0),manual=$('nominalDenda').value.trim();
+const denda=manual!==''?Math.max(0,Number(manual)||0):(pokok+bunga)*persen/100,total=pokok+bunga+denda,tglSurat=$('tglSurat').value,tglBatas=$('tglBatas').value,hp=$('hpKantor').value.trim();
+$('pNoSurat').textContent=$('noSurat').value.trim()||'-';$('pLampiran').textContent=$('lampiran').value.trim()||'-';
+$('pPerihal').textContent='Surat Peringatan '+jenis;$('pPerihalIsi').textContent='Surat Peringatan '+jenis;
+$('pKantor').textContent=officeName;$('pAlamatKantor').textContent=$('alamatKantor').value.trim()||'-';
+$('pNama').textContent=$('nama').value.trim()||'................................';$('pAlamatDebitur').textContent=$('alamatDebitur').value.trim();
+$('pNamaAgunan').textContent='Atas Nama '+($('namaAgunan').value.trim()||'(-)');
+$('pTanggal').textContent=(officeData.kota||'Wonogiri')+', '+tanggal(tglSurat);
+$('pSPK').textContent=$('noSPK').value.trim()||'-';$('pTglSPK').textContent=tanggal($('tglSPK').value);$('pRekening').textContent=$('rekening').value.trim()||'-';$('pPosisi').textContent=tanggal(tglSurat);
+$('pPokok').textContent=rp(pokok);$('pBunga').textContent=rp(bunga);$('pDenda').textContent=rp(denda);$('pTotal').textContent=rp(total);$('pTerbilang').textContent='Terbilang: '+terbilang(total);
+$('pHariTanggal').textContent=tglBatas?tanggal(tglBatas,true)+', tanggal '+tanggal(tglBatas):'-';
+$('pKotaTanggal').textContent=(officeData.kota||'Wonogiri')+', '+tanggal(tglSurat);$('pKantorSign').textContent=officeName;
+$('pPemimpin').textContent=$('pemimpin').value.trim()||'................................';$('pJabatan').textContent=$('jabatan').value.trim()||'Direktur';$('pHPKontak').textContent=hp||'................';
+}
+$('kantor').addEventListener('change',()=>selectOffice(true));
+$('tglSurat').addEventListener('input',()=>{$('tglBatas').value=addDays($('tglSurat').value,Math.max(0,Number($('hari').value)||0));update();saveForm()});
+$('hari').addEventListener('input',()=>{$('tglBatas').value=addDays($('tglSurat').value,Math.max(0,Number($('hari').value)||0));update();saveForm()});
+document.querySelectorAll('.form input,.form select,.form textarea').forEach(e=>{if(!['kantor','tglSurat','hari'].includes(e.id)){e.addEventListener('input',()=>{update();saveForm()});e.addEventListener('change',()=>{update();saveForm()})}});
+$('reset').addEventListener('click',()=>{if(!confirm('Reset seluruh formulir? Data tersimpan pada browser juga akan dihapus.'))return;try{localStorage.removeItem(STORAGE_KEY)}catch(e){}
+$('jenis').value='I';$('noSurat').value='';$('tglSurat').value=dateNow();$('lampiran').value='-';$('noSPK').value='';$('tglSPK').value='';$('nama').value='';$('namaAgunan').value='';$('alamatDebitur').value='';$('rekening').value='';$('hpDebitur').value='';$('pokok').value=119985000;$('bunga').value=220850000;$('persen').value=.5;$('nominalDenda').value='';$('hari').value=7;$('tglBatas').value=addDays(dateNow(),7);$('jabatan').value='Direktur';$('kantor').value='Kantor Pusat Operasional';selectOffice(false);update();saveForm()});
+setupOffices();
+if(!loadForm()){$('tglSurat').value=dateNow();$('tglBatas').value=addDays(dateNow(),7);selectOffice(false)}
+update();
+</script>
+</body>
+</html>
