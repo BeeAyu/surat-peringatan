@@ -24,7 +24,7 @@
 <div class="field"><label>Pilih Kantor</label><select id="kantor"></select></div>
 <div class="field"><label>Alamat Kantor</label><input id="alamatKantor"></div>
 <div class="field"><label>Nama Pemimpin Cabang</label><input id="pemimpin"></div>
-<div class="field"><label>Jabatan Penandatangan</label><input id="jabatan" value="Direktur"></div>
+<div class="field"><label>Jabatan Penandatangan</label><input id="jabatan" value="Pemimpin Cabang"></div>
 <div class="field"><label>Nomor HP / Telepon Kantor</label><input id="hpKantor" placeholder="Otomatis sesuai kantor atau isi manual"><small>Nomor otomatis mengikuti kantor yang dipilih dan bisa diedit manual. Nomor ditampilkan pada catatan surat.</small></div>
 <div class="sect">DATA DEBITUR</div>
 <div class="field"><label>Kepada Yth. Bapak/Ibu</label><input id="nama" placeholder="Nama debitur"></div>
@@ -53,7 +53,7 @@
 <p class="terbilang" id="pTerbilang">Terbilang: ................................</p>
 <p style="text-indent:28px">Berdasarkan hal tersebut di atas, untuk menghindari bertambahnya beban bunga dan denda kredit serta untuk menjaga reputasi perbankan Saudara tetap terjaga dengan baik, kami harap Saudara <strong>SEGERA</strong> menyelesaikan seluruh kewajiban sebagaimana tersebut di atas paling lambat hari <strong id="pHariTanggal">-</strong>.</p>
 <p style="text-indent:28px">Demikian <strong id="pPerihalIsi">Surat Peringatan I</strong> ini disampaikan untuk menjadi perhatian, dan atas kerja sama yang baik disampaikan terima kasih.</p></div>
-<div class="sign"><div id="pKotaTanggal">Wonogiri, ................</div><strong>PT BPR BKK WONOGIRI (Perseroda)</strong><br><strong id="pKantorSign">Kantor Pusat Operasional</strong><div class="space"></div><div class="name" id="pPemimpin">................................</div><div id="pJabatan">Direktur</div></div>
+<div class="sign"><div id="pKotaTanggal">Wonogiri, ................</div><strong>PT BPR BKK WONOGIRI (Perseroda)</strong><br><strong id="pKantorSign">Kantor Pusat Operasional</strong><div class="space"></div><div class="name" id="pPemimpin">................................</div><div id="pJabatan">Pemimpin Cabang</div></div>
 <div class="copy"><strong>Tembusan:</strong><p>1. Pemilik Agunan (<strong id="pNamaAgunan">Atas Nama (-)</strong>)</p><p>2. Arsip.</p></div>
 <div class="note"><p><strong>Catatan:</strong> Jika Saudara telah membayar kekurangan atau mengirimkan pembayaran tersebut di atas, mohon segera menghubungi kami melalui No HP <span id="pHPKontak">................</span>.</p><p><i>*) Perhitungan tersebut di atas belum termasuk kewajiban sampai dengan jatuh tempo.</i></p></div>
 </article></div></div>
@@ -98,14 +98,14 @@ $('pSPK').textContent=$('noSPK').value.trim()||'-';$('pTglSPK').textContent=tang
 $('pPokok').textContent=rp(pokok);$('pBunga').textContent=rp(bunga);$('pDenda').textContent=rp(denda);$('pTotal').textContent=rp(total);$('pTerbilang').textContent='Terbilang: '+terbilang(total);
 $('pHariTanggal').textContent=tglBatas?tanggal(tglBatas,true)+', tanggal '+tanggal(tglBatas):'-';
 $('pKotaTanggal').textContent=(officeData.kota||'Wonogiri')+', '+tanggal(tglSurat);$('pKantorSign').textContent=officeName;
-$('pPemimpin').textContent=$('pemimpin').value.trim()||'................................';$('pJabatan').textContent=$('jabatan').value.trim()||'Direktur';$('pHPKontak').textContent=hp||'................';
+$('pPemimpin').textContent=$('pemimpin').value.trim()||'................................';$('pJabatan').textContent=$('jabatan').value.trim()||'Pemimpin Cabang';$('pHPKontak').textContent=hp||'................';
 }
 $('kantor').addEventListener('change',()=>selectOffice(true));
 $('tglSurat').addEventListener('input',()=>{$('tglBatas').value=addDays($('tglSurat').value,Math.max(0,Number($('hari').value)||0));update();saveForm()});
 $('hari').addEventListener('input',()=>{$('tglBatas').value=addDays($('tglSurat').value,Math.max(0,Number($('hari').value)||0));update();saveForm()});
 document.querySelectorAll('.form input,.form select,.form textarea').forEach(e=>{if(!['kantor','tglSurat','hari'].includes(e.id)){e.addEventListener('input',()=>{update();saveForm()});e.addEventListener('change',()=>{update();saveForm()})}});
 $('reset').addEventListener('click',()=>{if(!confirm('Reset seluruh formulir? Data tersimpan pada browser juga akan dihapus.'))return;try{localStorage.removeItem(STORAGE_KEY)}catch(e){}
-$('jenis').value='I';$('noSurat').value='';$('tglSurat').value=dateNow();$('lampiran').value='-';$('noSPK').value='';$('tglSPK').value='';$('nama').value='';$('namaAgunan').value='';$('alamatDebitur').value='';$('rekening').value='';$('hpDebitur').value='';$('pokok').value=119985000;$('bunga').value=220850000;$('persen').value=.5;$('nominalDenda').value='';$('hari').value=7;$('tglBatas').value=addDays(dateNow(),7);$('jabatan').value='Direktur';$('kantor').value='Kantor Pusat Operasional';selectOffice(false);update();saveForm()});
+$('jenis').value='I';$('noSurat').value='';$('tglSurat').value=dateNow();$('lampiran').value='-';$('noSPK').value='';$('tglSPK').value='';$('nama').value='';$('namaAgunan').value='';$('alamatDebitur').value='';$('rekening').value='';$('hpDebitur').value='';$('pokok').value=119985000;$('bunga').value=220850000;$('persen').value=.5;$('nominalDenda').value='';$('hari').value=7;$('tglBatas').value=addDays(dateNow(),7);$('jabatan').value='Pemimpin Cabang';$('kantor').value='Kantor Pusat Operasional';selectOffice(false);update();saveForm()});
 setupOffices();
 if(!loadForm()){$('tglSurat').value=dateNow();$('tglBatas').value=addDays(dateNow(),7);selectOffice(false)}
 update();
