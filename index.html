@@ -1,11 +1,11 @@
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Surat Peringatan | PT BPR BKK Wonogiri (Perseroda)</title>
+<title>Surat Peringatan - PT BPR BKK Wonogiri</title>
 
 <style>
 * {
@@ -21,14 +21,14 @@ body {
 
 .top {
     background: #153b62;
-    color: #fff;
-    padding: 18px;
+    color: white;
     text-align: center;
+    padding: 18px;
 }
 
 .top h1 {
-    font-size: 22px;
     margin: 0 0 5px;
+    font-size: 22px;
 }
 
 .layout {
@@ -42,26 +42,25 @@ body {
 }
 
 .form {
-    background: #fff;
+    background: white;
     padding: 18px;
     border-radius: 10px;
     box-shadow: 0 4px 18px #0001;
 }
 
 .form h2 {
-    font-size: 18px;
     margin: 0 0 16px;
+    font-size: 18px;
     color: #153b62;
 }
 
 .sect {
+    margin: 15px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #ddd;
+    color: #1769aa;
     font-size: 12px;
     font-weight: bold;
-    color: #1769aa;
-    border-bottom: 1px solid #ddd;
-    padding: 13px 0 6px;
-    margin-bottom: 10px;
-    letter-spacing: .5px;
 }
 
 .field {
@@ -70,9 +69,9 @@ body {
 
 .field label {
     display: block;
+    margin-bottom: 5px;
     font-size: 12px;
     font-weight: bold;
-    margin-bottom: 5px;
 }
 
 .field input,
@@ -87,9 +86,9 @@ body {
 
 .field small {
     display: block;
+    margin-top: 5px;
     color: #64748b;
     font-size: 11px;
-    margin-top: 5px;
     line-height: 1.4;
 }
 
@@ -102,7 +101,7 @@ body {
 .buttons button {
     flex: 1;
     padding: 11px;
-    border: 0;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
@@ -110,7 +109,7 @@ body {
 
 .print {
     background: #1769aa;
-    color: #fff;
+    color: white;
 }
 
 .reset {
@@ -124,80 +123,21 @@ body {
 }
 
 .paper {
-    width: 210mm;
-    min-height: 297mm;
-    background: #fff;
+    width: 215mm;
+    min-height: 330mm;
     margin: 0 auto;
-    padding: 17mm 19mm 15mm;
-    font: 11pt/1.35 "Times New Roman", serif;
-}
-
-.letterhead {
-    border-bottom: 3px double #111;
-    padding-bottom: 8px;
-    margin-bottom: 13px;
-}
-
-/* Logo dan identitas kantor */
-.brand-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    min-height: 75px;
-}
-
-.logo {
-    display: block;
-    flex: 0 0 68px;
-    width: 68px;
-    height: 68px;
-    max-width: 68px;
-    max-height: 68px;
-    object-fit: contain;
-    margin: 0;
-}
-
-.brand-text {
-    flex: 0 1 auto;
-    min-width: 0;
-    text-align: center;
-    margin-left: 0;
-}
-
-.company {
-    font: bold 15pt Arial, sans-serif;
-    text-align: center;
-    margin: 0 0 3px;
-}
-
-.office {
-    text-align: center;
-    font-weight: bold;
-    margin: 0 0 2px;
-}
-
-.officeaddr {
-    text-align: center;
-    font-size: 9.5pt;
-    margin: 0 0 7px;
-    overflow-wrap: anywhere;
-}
-
-.logo-status {
-    font-size: 10px;
-    color: #666;
-    text-align: center;
-    margin-bottom: 3px;
+    padding: 45mm 15mm 8mm;
+    background: white;
+    font: 10pt/1.15 "Times New Roman", serif;
 }
 
 .headgrid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    border: 1px solid #777;
-    margin-bottom: 18px;
-    font-size: 10.5pt;
     min-height: 18mm;
+    margin-bottom: 10px;
+    border: 1px solid #777;
+    font-size: 9.5pt;
 }
 
 .headleft {
@@ -214,23 +154,22 @@ body {
 .meta-row {
     display: grid;
     grid-template-columns: 58px 10px minmax(0, 1fr);
-    gap: 0;
 }
 
 .letter p {
-    margin: 0 0 9px;
+    margin: 0 0 6px;
     text-align: justify;
     overflow-wrap: anywhere;
 }
 
 .debt {
     width: 76%;
+    margin: 6px 0 4px;
     border-collapse: collapse;
-    margin: 10px 0 6px;
 }
 
 .debt td {
-    padding: 2px 0;
+    padding: 1px 0;
     vertical-align: top;
 }
 
@@ -245,19 +184,14 @@ body {
 }
 
 .debt .sum td {
-    font-weight: bold;
-    border-top: 1px solid #111;
     padding-top: 4px;
+    border-top: 1px solid #111;
+    font-weight: bold;
 }
 
-/* Label Terbilang normal, nominal tebal */
 .terbilang {
-    margin: 7px 0 17px;
+    margin: 5px 0 10px;
     font-style: italic;
-}
-
-.terbilang-label {
-    font-weight: normal;
 }
 
 .terbilang-nominal {
@@ -265,31 +199,31 @@ body {
 }
 
 .date-right {
+    margin: 0 0 10px;
     text-align: right;
-    margin: 0 0 14px;
 }
 
 .sign {
     width: 53%;
-    margin: 16px 0 0 auto;
+    margin: 10px 0 0 auto;
     text-align: center;
-    page-break-inside: avoid;
     break-inside: avoid;
+    page-break-inside: avoid;
 }
 
 .sign .space {
-    height: 48px;
+    height: 35px;
 }
 
 .sign .name {
-    text-decoration: underline;
     font-weight: bold;
+    text-decoration: underline;
     overflow-wrap: anywhere;
 }
 
 .copy {
-    margin-top: 13px;
-    font-size: 10pt;
+    margin-top: 8px;
+    font-size: 9pt;
 }
 
 .copy p {
@@ -297,8 +231,8 @@ body {
 }
 
 .note {
-    margin-top: 12px;
-    font-size: 10pt;
+    margin-top: 7px;
+    font-size: 9pt;
 }
 
 .note p {
@@ -309,7 +243,7 @@ body {
     font-size: 10pt;
 }
 
-@media (max-width: 900px) {
+@media screen and (max-width: 900px) {
     .layout {
         grid-template-columns: 1fr;
     }
@@ -317,37 +251,9 @@ body {
     .preview {
         overflow: auto;
     }
-
-    .paper {
-        margin: 0 auto;
-    }
 }
 
-@media (max-width: 520px) {
-    .brand-row {
-        gap: 5px;
-    }
-
-    .logo {
-        flex-basis: 55px;
-        width: 55px;
-        height: 55px;
-    }
-
-    .company {
-        font-size: 12pt;
-    }
-
-    .office {
-        font-size: 9pt;
-    }
-
-    .officeaddr {
-        font-size: 8pt;
-    }
-}
-
-/* Ukuran kertas F4/Folio */
+/* UKURAN KERTAS F4 */
 @page {
     size: 215mm 330mm;
     margin: 0;
@@ -356,10 +262,10 @@ body {
 @media print {
     html,
     body {
+        width: 215mm !important;
         margin: 0 !important;
         padding: 0 !important;
-        width: 215mm;
-        background: #fff !important;
+        background: white !important;
     }
 
     .top,
@@ -369,53 +275,79 @@ body {
 
     .layout {
         display: block !important;
-        width: 215mm;
-        max-width: none;
+        width: 215mm !important;
+        max-width: none !important;
         margin: 0 !important;
         padding: 0 !important;
     }
 
     .preview {
-        display: block;
-        width: 215mm;
-        margin: 0;
-        padding: 0;
+        display: block !important;
+        width: 215mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
         overflow: visible !important;
     }
 
     .paper {
         width: 215mm !important;
-        min-height: 330mm;
+        height: 330mm !important;
+        min-height: 0 !important;
         margin: 0 !important;
-        padding: 17mm 19mm 15mm;
+        padding: 45mm 15mm 8mm !important;
+        box-sizing: border-box !important;
         box-shadow: none !important;
-        font-size: 11pt;
-        page-break-after: avoid;
-        break-after: avoid-page;
+        font-family: "Times New Roman", serif !important;
+        font-size: 10pt !important;
+        line-height: 1.15 !important;
     }
 
-    .headgrid,
-    .sign,
-    .debt,
-    .brand-row {
-        break-inside: avoid;
-        page-break-inside: avoid;
+    .headgrid {
+        margin-bottom: 10px !important;
+        font-size: 9.5pt !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
     }
 
-    .logo-status {
-        display: none !important;
+    .letter p {
+        margin-bottom: 6px !important;
     }
 
-    input,
-    select,
-    textarea,
-    button {
-        display: none !important;
+    .debt {
+        margin-top: 6px !important;
+        margin-bottom: 4px !important;
+        font-size: 10pt !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
     }
 
-    a {
-        color: inherit;
-        text-decoration: none;
+    .debt td {
+        padding: 1px 0 !important;
+    }
+
+    .terbilang {
+        margin: 5px 0 10px !important;
+    }
+
+    .sign {
+        margin-top: 10px !important;
+        font-size: 10pt !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+    }
+
+    .sign .space {
+        height: 35px !important;
+    }
+
+    .copy {
+        margin-top: 8px !important;
+        font-size: 9pt !important;
+    }
+
+    .note {
+        margin-top: 7px !important;
+        font-size: 9pt !important;
     }
 }
 </style>
@@ -479,6 +411,7 @@ body {
     <div class="field">
         <label for="alamatKantor">Alamat Kantor</label>
         <input id="alamatKantor">
+        <small>Alamat disimpan sebagai data internal dan tidak dicetak pada kepala surat.</small>
     </div>
 
     <div class="field">
@@ -489,13 +422,11 @@ body {
     <div class="field">
         <label for="jabatan">Jabatan Penandatangan</label>
         <input id="jabatan" value="Pemimpin KPO" readonly>
-        <small>Jabatan otomatis mengikuti kantor yang dipilih.</small>
     </div>
 
     <div class="field">
         <label for="hpKantor">Nomor HP / Telepon Kantor</label>
         <input id="hpKantor" placeholder="Nomor kontak kantor">
-        <small>Nomor kontak ditampilkan pada catatan surat dan dapat diedit manual.</small>
     </div>
 
     <div class="sect">DATA DEBITUR</div>
@@ -508,7 +439,6 @@ body {
     <div class="field">
         <label for="namaAgunan">Nama Pemilik Agunan</label>
         <input id="namaAgunan" placeholder="Nama pemilik agunan">
-        <small>Tembusan menampilkan nama pemilik agunan. Jika kosong, ditampilkan tanda (-).</small>
     </div>
 
     <div class="field">
@@ -539,20 +469,21 @@ body {
     </div>
 
     <div class="field">
-        <label for="persen">Denda (%) — perhitungan otomatis</label>
+        <label for="persen">Denda (%)</label>
         <input id="persen" type="number" min="0" step="0.01" value="0.5">
     </div>
 
     <div class="field">
         <label for="nominalDenda">Nominal Denda Manual (Rp)</label>
-        <input id="nominalDenda" type="number" min="0" step="1" placeholder="Kosongkan untuk otomatis">
-        <small>Jika diisi, nominal ini digunakan sebagai denda. Jika kosong, denda dihitung otomatis berdasarkan persentase.</small>
+        <input id="nominalDenda" type="number" min="0" step="1"
+               placeholder="Kosongkan untuk otomatis">
+        <small>Jika diisi, nilai ini dipakai. Jika kosong, denda dihitung otomatis.</small>
     </div>
 
     <div class="sect">BATAS WAKTU</div>
 
     <div class="field">
-        <label for="hari">Paling Lambat (jumlah hari)</label>
+        <label for="hari">Batas Waktu (jumlah hari)</label>
         <input id="hari" type="number" min="0" value="7">
     </div>
 
@@ -567,52 +498,27 @@ body {
     </div>
 
     <p class="small">
-        Data formulir disimpan otomatis di browser ini dan akan tetap tersedia setelah halaman direfresh.
-        Tombol Reset akan menghapus data tersimpan.
+        Data formulir disimpan otomatis di browser ini.
     </p>
 </section>
 
 <div class="preview">
 <article class="paper" id="paper">
 
-    <div class="letterhead">
-        <div class="brand-row">
-            <img
-                class="logo"
-                id="logoBPR"
-                src="assets/logo.png"
-                alt="Logo PT BPR BKK Wonogiri"
-                data-logo-index="0"
-                onerror="cobaLogoBerikutnya(this)"
-            >
-
-            <div class="brand-text">
-                <h1 class="company">PT BPR BKK WONOGIRI (Perseroda)</h1>
-                <p class="office" id="pKantor">Kantor Pusat Operasional</p>
-                <p class="officeaddr" id="pAlamatKantor">Jalan Jenderal Sudirman No. 234, Wonogiri</p>
-            </div>
-        </div>
-
-        <div id="logoStatus" class="logo-status"></div>
-    </div>
+    <!-- Kop dan logo sengaja dihilangkan karena memakai kertas kop fisik. -->
 
     <div class="headgrid">
         <div class="headleft">
             <div class="meta-row">
-                <span>Nomor</span>
-                <span>:</span>
+                <span>Nomor</span><span>:</span>
                 <span id="pNoSurat">-</span>
             </div>
-
             <div class="meta-row">
-                <span>Lampiran</span>
-                <span>:</span>
+                <span>Lampiran</span><span>:</span>
                 <span id="pLampiran">-</span>
             </div>
-
             <div class="meta-row">
-                <span>Perihal</span>
-                <span>:</span>
+                <span>Perihal</span><span>:</span>
                 <strong id="pPerihal">Surat Peringatan I</strong>
             </div>
         </div>
@@ -632,50 +538,45 @@ body {
         <p style="text-indent:28px">
             Menunjuk Surat Perjanjian Kredit Nomor
             <strong id="pSPK">-</strong> tanggal
-            <strong id="pTglSPK">-</strong>, melalui surat ini kami memberitahukan
-            bahwa fasilitas Saudara dengan nomor rekening
-            <strong id="pRekening">-</strong>, menurut catatan administrasi yang ada
-            pada sistem kami posisi tanggal <strong id="pPosisi">-</strong>,
-            Saudara mempunyai tunggakan pembayaran kredit sebagai berikut:
+            <strong id="pTglSPK">-</strong>, melalui surat ini kami
+            memberitahukan bahwa fasilitas Saudara dengan nomor rekening
+            <strong id="pRekening">-</strong>, menurut catatan administrasi
+            yang ada pada sistem kami posisi tanggal
+            <strong id="pPosisi">-</strong>, Saudara mempunyai tunggakan
+            pembayaran kredit sebagai berikut:
         </p>
 
         <table class="debt">
             <tr>
-                <td>Tunggakan Pokok</td>
-                <td>:</td>
+                <td>Tunggakan Pokok</td><td>:</td>
                 <td id="pPokok">Rp 119.985.000</td>
             </tr>
-
             <tr>
-                <td>Tunggakan Bunga</td>
-                <td>:</td>
+                <td>Tunggakan Bunga</td><td>:</td>
                 <td id="pBunga">Rp 220.850.000</td>
             </tr>
-
             <tr>
-                <td>Denda</td>
-                <td>:</td>
+                <td>Denda</td><td>:</td>
                 <td id="pDenda">Rp 1.704.175</td>
             </tr>
-
             <tr class="sum">
-                <td>Total Tunggakan</td>
-                <td>:</td>
+                <td>Total Tunggakan</td><td>:</td>
                 <td id="pTotal">Rp 342.539.175</td>
             </tr>
         </table>
 
-        <p class="terbilang" id="pTerbilang">
-            <span class="terbilang-label">Terbilang:</span>
+        <p class="terbilang">
+            Terbilang:
             <strong class="terbilang-nominal" id="pNilaiTerbilang">-</strong>
         </p>
 
         <p style="text-indent:28px">
-            Berdasarkan hal tersebut di atas, untuk menghindari bertambahnya beban
-            bunga dan denda kredit serta untuk menjaga reputasi perbankan Saudara
-            tetap terjaga dengan baik, kami harap Saudara <strong>SEGERA</strong>
-            menyelesaikan seluruh kewajiban sebagaimana tersebut di atas paling
-            lambat hari <strong id="pHariTanggal">-</strong>.
+            Berdasarkan hal tersebut di atas, untuk menghindari bertambahnya
+            beban bunga dan denda kredit serta untuk menjaga reputasi perbankan
+            Saudara tetap terjaga dengan baik, kami harap Saudara
+            <strong>SEGERA</strong> menyelesaikan seluruh kewajiban sebagaimana
+            tersebut di atas paling lambat hari
+            <strong id="pHariTanggal">-</strong>.
         </p>
 
         <p style="text-indent:28px">
@@ -689,7 +590,9 @@ body {
         <div id="pKotaTanggal">Wonogiri, -</div>
         <strong>PT BPR BKK WONOGIRI (Perseroda)</strong><br>
         <strong id="pKantorSign">Kantor Pusat Operasional</strong>
+
         <div class="space"></div>
+
         <div class="name" id="pPemimpin">................................</div>
         <div id="pJabatan">Pemimpin KPO</div>
     </div>
@@ -702,12 +605,11 @@ body {
 
     <div class="note">
         <p>
-            <strong>Catatan:</strong>
-            Jika Saudara telah membayar kekurangan atau mengirimkan pembayaran tersebut
-            di atas, mohon segera menghubungi kami melalui No HP
+            <strong>Catatan:</strong> Jika Saudara telah membayar kekurangan
+            atau mengirimkan pembayaran tersebut di atas, mohon segera
+            menghubungi kami melalui No HP
             <span id="pHPKontak">................</span>.
         </p>
-
         <p>
             <i>*) Perhitungan tersebut di atas belum termasuk kewajiban sampai dengan jatuh tempo.</i>
         </p>
@@ -723,33 +625,6 @@ body {
 const $ = id => document.getElementById(id);
 const STORAGE_KEY = 'suratPeringatanBPR_data_v1';
 
-const daftarLogo = [
-    'assets/logo.png',
-    'assets/logo-bpr.png',
-    'assets/logo.jpg',
-    'assets/logo.jpeg',
-    'assets/logo-bpr.jpg',
-    'assets/logo-bpr.jpeg',
-    'assets/logo-kantor.png',
-    'assets/logo-kantor.jpg',
-    'assets/Logo.png',
-    'assets/Logo BPR.png',
-    'assets/Logo Emblem.png'
-];
-
-function cobaLogoBerikutnya(img) {
-    const i = Number(img.dataset.logoIndex || 0) + 1;
-    img.dataset.logoIndex = i;
-
-    if (i < daftarLogo.length) {
-        img.src = daftarLogo[i];
-    } else {
-        img.style.display = 'none';
-        $('logoStatus').textContent = '';
-        console.warn('Logo tidak ditemukan. Periksa nama file dan folder assets.');
-    }
-}
-
 const offices = {
     'Kantor Pusat Operasional': {
         alamat: 'Jalan Jenderal Sudirman No. 234, Wonogiri',
@@ -757,77 +632,66 @@ const offices = {
         kota: 'Wonogiri',
         hp: '0273-321000'
     },
-
     'Kantor Cabang Ngadirojo': {
         alamat: 'Jl. Kepodang No. 4 Ngadirojo 57681 Tlp. 0273.5327108',
         pemimpin: 'TOTOK GATOT WALUYO, SE',
         kota: 'Ngadirojo',
         hp: '081234567801'
     },
-
     'Kantor Cabang Girimarto': {
         alamat: 'Jl. Sinuwun No. 29 Tambak Merang, Girimarto Telp. 0273-5316114',
         pemimpin: 'BUDI PURWANTOR, SE',
         kota: 'Girimarto',
         hp: '081234567802'
     },
-
     'Kantor Cabang Jatipurno': {
         alamat: 'Jl. Arjuno No. 20 Jatipurno, Wonogiri',
         pemimpin: 'PUGUH ALDOKO P',
         kota: 'Jatipurno',
         hp: '081234567803'
     },
-
     'Kantor Cabang Jatiroto': {
         alamat: 'Jl. Raya Jatiroto No. 68 Jatiroto, Wonogiri',
         pemimpin: 'UMAYA ISMARWATI',
         kota: 'Jatiroto',
         hp: '081234567804'
     },
-
     'Kantor Cabang Slogohimo': {
         alamat: 'Jl. Pungawan No. 1 Slogohimo, Wonogiri',
         pemimpin: 'YETTY DWIAN APRIANTARI',
         kota: 'Slogohimo',
         hp: '081234567805'
     },
-
     'Kantor Cabang Purwantoro': {
         alamat: 'Jl. Pemuda No. 35 Purwantoro, Wonogiri',
         pemimpin: 'TEGUH SUMARTONO',
         kota: 'Purwantoro',
         hp: '081234567806'
     },
-
     'Kantor Cabang Tirtomoyo': {
         alamat: 'Jl. Raya Tirtomoyo No. 51 Tirtomoyo, Wonogiri',
         pemimpin: 'SURJANA',
         kota: 'Tirtomoyo',
         hp: '081234567807'
     },
-
     'Kantor Cabang Baturetno': {
         alamat: 'Jl. Raya Baturetno - Wonogiri',
         pemimpin: 'SUSILO',
         kota: 'Baturetno',
         hp: '081234567808'
     },
-
     'Kantor Cabang Batuwarno': {
         alamat: 'Jl. Raya Batuwarno - Karangtengah Km 12 Telp. 0273-3302666',
         pemimpin: 'ANOM EKO BAWONO',
         kota: 'Batuwarno',
         hp: '081234567809'
     },
-
     'Kantor Cabang Giriwoyo': {
         alamat: 'Jl. Wijaya Kusuma No. 94 Giriwoyo, Wonogiri',
         pemimpin: 'ENDANG SUHARNIATI',
         kota: 'Giriwoyo',
         hp: '081234567810'
     },
-
     'Kantor Cabang Giritontro': {
         alamat: 'Jl. Raya Giritontro, Wonogiri',
         pemimpin: 'ARWINTO ADI',
@@ -838,26 +702,21 @@ const offices = {
 
 function dateNow() {
     const d = new Date();
-    const x = new Date(d.getTime() - d.getTimezoneOffset() * 60000);
-    return x.toISOString().slice(0, 10);
+    return new Date(d.getTime() - d.getTimezoneOffset() * 60000)
+        .toISOString().slice(0, 10);
 }
 
-function addDays(v, n) {
-    if (!v) return '';
-
-    const d = new Date(v + 'T12:00:00');
-    d.setDate(d.getDate() + n);
-
-    const x = new Date(d.getTime() - d.getTimezoneOffset() * 60000);
-    return x.toISOString().slice(0, 10);
+function addDays(value, days) {
+    if (!value) return '';
+    const d = new Date(value + 'T12:00:00');
+    d.setDate(d.getDate() + days);
+    return new Date(d.getTime() - d.getTimezoneOffset() * 60000)
+        .toISOString().slice(0, 10);
 }
 
-function tanggal(v, weekday = false) {
-    if (!v) return '-';
-
-    const d = new Date(v + 'T12:00:00');
-
-    return d.toLocaleDateString('id-ID', {
+function tanggal(value, weekday = false) {
+    if (!value) return '-';
+    return new Date(value + 'T12:00:00').toLocaleDateString('id-ID', {
         ...(weekday ? { weekday: 'long' } : {}),
         day: '2-digit',
         month: 'long',
@@ -865,54 +724,37 @@ function tanggal(v, weekday = false) {
     });
 }
 
-function rp(v) {
-    return 'Rp ' + Math.round(v || 0).toLocaleString('id-ID');
+function rp(value) {
+    return 'Rp ' + Math.round(value || 0).toLocaleString('id-ID');
 }
 
 function terbilang(value) {
-    let n = Math.floor(Math.abs(value));
-
+    const n = Math.floor(Math.abs(value));
     const kata = [
-        '', 'satu', 'dua', 'tiga', 'empat', 'lima', 'enam',
-        'tujuh', 'delapan', 'sembilan', 'sepuluh', 'sebelas'
+        '', 'satu', 'dua', 'tiga', 'empat', 'lima',
+        'enam', 'tujuh', 'delapan', 'sembilan', 'sepuluh', 'sebelas'
     ];
 
     function sebut(x) {
         if (x === 0) return '';
         if (x < 12) return kata[x];
         if (x < 20) return sebut(x - 10) + ' belas';
-        if (x < 100) {
-            return sebut(Math.floor(x / 10)) + ' puluh ' + sebut(x % 10);
-        }
+        if (x < 100) return sebut(Math.floor(x / 10)) + ' puluh ' + sebut(x % 10);
         if (x < 200) return 'seratus ' + sebut(x - 100);
-        if (x < 1000) {
-            return sebut(Math.floor(x / 100)) + ' ratus ' + sebut(x % 100);
-        }
+        if (x < 1000) return sebut(Math.floor(x / 100)) + ' ratus ' + sebut(x % 100);
         if (x < 2000) return 'seribu ' + sebut(x - 1000);
-        if (x < 1e6) {
-            return sebut(Math.floor(x / 1000)) + ' ribu ' + sebut(x % 1000);
-        }
-        if (x < 1e9) {
-            return sebut(Math.floor(x / 1e6)) + ' juta ' + sebut(x % 1e6);
-        }
-        if (x < 1e12) {
-            return sebut(Math.floor(x / 1e9)) + ' miliar ' + sebut(x % 1e9);
-        }
-        if (x < 1e15) {
-            return sebut(Math.floor(x / 1e12)) + ' triliun ' + sebut(x % 1e12);
-        }
-
+        if (x < 1e6) return sebut(Math.floor(x / 1000)) + ' ribu ' + sebut(x % 1000);
+        if (x < 1e9) return sebut(Math.floor(x / 1e6)) + ' juta ' + sebut(x % 1e6);
+        if (x < 1e12) return sebut(Math.floor(x / 1e9)) + ' miliar ' + sebut(x % 1e9);
+        if (x < 1e15) return sebut(Math.floor(x / 1e12)) + ' triliun ' + sebut(x % 1e12);
         return String(x);
     }
 
-    return (n === 0 ? 'nol' : sebut(n))
-        .replace(/\s+/g, ' ')
-        .trim() + ' rupiah';
+    return (n === 0 ? 'nol' : sebut(n)).replace(/\s+/g, ' ').trim() + ' rupiah';
 }
 
 function saveForm() {
     const data = {};
-
     document.querySelectorAll('.form input, .form select, .form textarea')
         .forEach(el => {
             if (el.id) data[el.id] = el.value;
@@ -921,7 +763,7 @@ function saveForm() {
     try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
     } catch (e) {
-        console.warn('Data tidak bisa disimpan di browser.', e);
+        console.warn('Data tidak bisa disimpan.', e);
     }
 }
 
@@ -934,7 +776,6 @@ function loadForm() {
 
         Object.entries(data).forEach(([id, value]) => {
             const el = $(id);
-
             if (el && id !== 'kantor' && value !== undefined) {
                 el.value = value;
             }
@@ -963,7 +804,7 @@ function setupOffices() {
     selectOffice(false);
 }
 
-function selectOffice(save = true) {
+function selectOffice(shouldSave = true) {
     const office = offices[$('kantor').value];
     if (!office) return;
 
@@ -977,8 +818,7 @@ function selectOffice(save = true) {
             : 'Pemimpin Cabang';
 
     update();
-
-    if (save) saveForm();
+    if (shouldSave) saveForm();
 }
 
 function update() {
@@ -998,7 +838,6 @@ function update() {
     const total = pokok + bunga + denda;
     const tglSurat = $('tglSurat').value;
     const tglBatas = $('tglBatas').value;
-    const hp = $('hpKantor').value.trim();
 
     $('pNoSurat').textContent = $('noSurat').value.trim() || '-';
     $('pLampiran').textContent = $('lampiran').value.trim() || '-';
@@ -1006,22 +845,11 @@ function update() {
     $('pPerihal').textContent = 'Surat Peringatan ' + jenis;
     $('pPerihalIsi').textContent = 'Surat Peringatan ' + jenis;
 
-    $('pKantor').textContent = officeName;
-    $('pAlamatKantor').textContent =
-        $('alamatKantor').value.trim() || '-';
+    $('pNama').textContent = $('nama').value.trim() || '................................';
+    $('pAlamatDebitur').textContent = $('alamatDebitur').value.trim();
+    $('pNamaAgunan').textContent = 'Atas Nama ' + ($('namaAgunan').value.trim() || '(-)');
 
-    $('pNama').textContent =
-        $('nama').value.trim() || '................................';
-
-    $('pAlamatDebitur').textContent =
-        $('alamatDebitur').value.trim();
-
-    $('pNamaAgunan').textContent =
-        'Atas Nama ' + ($('namaAgunan').value.trim() || '(-)');
-
-    $('pTanggal').textContent =
-        (officeData.kota || 'Wonogiri') + ', ' + tanggal(tglSurat);
-
+    $('pTanggal').textContent = (officeData.kota || 'Wonogiri') + ', ' + tanggal(tglSurat);
     $('pSPK').textContent = $('noSPK').value.trim() || '-';
     $('pTglSPK').textContent = tanggal($('tglSPK').value);
     $('pRekening').textContent = $('rekening').value.trim() || '-';
@@ -1031,27 +859,18 @@ function update() {
     $('pBunga').textContent = rp(bunga);
     $('pDenda').textContent = rp(denda);
     $('pTotal').textContent = rp(total);
-
     $('pNilaiTerbilang').textContent = terbilang(total);
 
     $('pHariTanggal').textContent = tglBatas
         ? tanggal(tglBatas, true) + ', tanggal ' + tanggal(tglBatas)
         : '-';
 
-    $('pKotaTanggal').textContent =
-        (officeData.kota || 'Wonogiri') + ', ' + tanggal(tglSurat);
-
+    $('pKotaTanggal').textContent = (officeData.kota || 'Wonogiri') + ', ' + tanggal(tglSurat);
     $('pKantorSign').textContent = officeName;
-
-    $('pPemimpin').textContent =
-        $('pemimpin').value.trim() || '................................';
-
+    $('pPemimpin').textContent = $('pemimpin').value.trim() || '................................';
     $('pJabatan').textContent =
-        officeName === 'Kantor Pusat Operasional'
-            ? 'Pemimpin KPO'
-            : 'Pemimpin Cabang';
-
-    $('pHPKontak').textContent = hp || '................';
+        officeName === 'Kantor Pusat Operasional' ? 'Pemimpin KPO' : 'Pemimpin Cabang';
+    $('pHPKontak').textContent = $('hpKantor').value.trim() || '................';
 }
 
 $('kantor').addEventListener('change', () => selectOffice(true));
@@ -1061,7 +880,6 @@ $('tglSurat').addEventListener('input', () => {
         $('tglSurat').value,
         Math.max(0, Number($('hari').value) || 0)
     );
-
     update();
     saveForm();
 });
@@ -1071,7 +889,6 @@ $('hari').addEventListener('input', () => {
         $('tglSurat').value,
         Math.max(0, Number($('hari').value) || 0)
     );
-
     update();
     saveForm();
 });
@@ -1083,7 +900,6 @@ document.querySelectorAll('.form input, .form select, .form textarea')
                 update();
                 saveForm();
             });
-
             el.addEventListener('change', () => {
                 update();
                 saveForm();
@@ -1097,16 +913,12 @@ $('btnPrint').addEventListener('click', () => {
 });
 
 $('reset').addEventListener('click', () => {
-    if (!confirm(
-        'Reset seluruh formulir? Data tersimpan pada browser juga akan dihapus.'
-    )) {
-        return;
-    }
+    if (!confirm('Reset seluruh formulir dan hapus data tersimpan?')) return;
 
     try {
         localStorage.removeItem(STORAGE_KEY);
     } catch (e) {
-        console.warn('Data tersimpan tidak dapat dihapus.', e);
+        console.warn(e);
     }
 
     $('jenis').value = 'I';
@@ -1143,7 +955,6 @@ if (!loadForm()) {
 
 update();
 </script>
-
 </body>
 </html>
 
