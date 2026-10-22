@@ -847,7 +847,7 @@ function update() {
 
     $('pNama').textContent = $('nama').value.trim() || '................................';
     $('pAlamatDebitur').textContent = $('alamatDebitur').value.trim();
-    $('pNamaAgunan').textContent = '' + ($('namaAgunan').value.trim() || '(-)');
+    $('pNamaAgunan').textContent = '' + ($'namaAgunan'.value.trim() || '(-)');
 
     $('pTanggal').textContent = (officeData.kota || 'Wonogiri') + ', ' + tanggal(tglSurat);
     $('pSPK').textContent = $('noSPK').value.trim() || '-';
