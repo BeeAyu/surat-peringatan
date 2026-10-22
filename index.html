@@ -356,7 +356,7 @@ body {
 <body>
 
 <header class="top">
-    <h1>SURAT PERINGATAN</h1>
+    <h1>APLIKASI SURAT PERINGATAN</h1>
     <div>PT BPR BKK WONOGIRI (Perseroda)</div>
 </header>
 
@@ -470,7 +470,7 @@ body {
 
     <div class="field">
         <label for="persen">Denda (%)</label>
-        <input id="persen" type="number" min="0" step="0.01" value="2.50">
+        <input id="persen" type="number" min="0" step="0.01" value="0.5">
     </div>
 
     <div class="field">
@@ -549,25 +549,25 @@ body {
         <table class="debt">
             <tr>
                 <td>Tunggakan Pokok</td><td>:</td>
-                <td id="pPokok">Rp 0</td>
+                <td id="pPokok">Rp 119.985.000</td>
             </tr>
             <tr>
                 <td>Tunggakan Bunga</td><td>:</td>
-                <td id="pBunga">Rp 0</td>
+                <td id="pBunga">Rp 220.850.000</td>
             </tr>
             <tr>
                 <td>Denda</td><td>:</td>
-                <td id="pDenda">Rp 0</td>
+                <td id="pDenda">Rp 1.704.175</td>
             </tr>
             <tr class="sum">
                 <td>Total Tunggakan</td><td>:</td>
-                <td id="pTotal">Rp 0</td>
+                <td id="pTotal">Rp 342.539.175</td>
             </tr>
         </table>
 
         <p class="terbilang">
             Terbilang:
-           ( <strong class="terbilang-nominal" id="pNilaiTerbilang">-</strong> )
+            <strong class="terbilang-nominal" id="pNilaiTerbilang">-</strong>
         </p>
 
         <p style="text-indent:28px">
@@ -599,7 +599,7 @@ body {
 
     <div class="copy">
         <strong>Tembusan:</strong>
-        <p>1. Pemilik Agunan <strong id="pNamaAgunan">-</strong></p>
+        <p>1. Pemilik Agunan (<strong id="pNamaAgunan">Atas Nama (-)</strong>)</p>
         <p>2. Arsip.</p>
     </div>
 
@@ -847,7 +847,7 @@ function update() {
 
     $('pNama').textContent = $('nama').value.trim() || '................................';
     $('pAlamatDebitur').textContent = $('alamatDebitur').value.trim();
-    $('pNamaAgunan').textContent = '' + ($'namaAgunan'.value.trim() || '(-)');
+    $('pNamaAgunan').textContent = 'Atas Nama ' + ($('namaAgunan').value.trim() || '(-)');
 
     $('pTanggal').textContent = (officeData.kota || 'Wonogiri') + ', ' + tanggal(tglSurat);
     $('pSPK').textContent = $('noSPK').value.trim() || '-';
@@ -932,9 +932,9 @@ $('reset').addEventListener('click', () => {
     $('alamatDebitur').value = '';
     $('rekening').value = '';
     $('hpDebitur').value = '';
-    $('pokok').value = 0;
-    $('bunga').value = 0;
-    $('persen').value = 2.50;
+    $('pokok').value = 119985000;
+    $('bunga').value = 220850000;
+    $('persen').value = 0.5;
     $('nominalDenda').value = '';
     $('hari').value = 7;
     $('tglBatas').value = addDays(dateNow(), 7);
