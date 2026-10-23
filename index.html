@@ -36,7 +36,7 @@ body {
     margin: 20px auto;
     padding: 0 14px;
     display: grid;
-    grid-template-columns: 340px minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     gap: 18px;
     align-items: start;
 }
@@ -46,7 +46,19 @@ body {
     padding: 18px;
     border-radius: 10px;
     box-shadow: 0 4px 18px #0001;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 14px;
+    align-items: start;
 }
+
+.form h2,
+.form .sect,
+.form .buttons {
+    grid-column: 1 / -1;
+}
+
+.form .field { min-width: 0; }
 
 .form h2 {
     margin: 0 0 16px;
@@ -244,13 +256,13 @@ body {
 }
 
 @media screen and (max-width: 900px) {
-    .layout {
-        grid-template-columns: 1fr;
-    }
+    .layout { grid-template-columns: minmax(0, 1fr); }
+    .form { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .preview { overflow: auto; }
+}
 
-    .preview {
-        overflow: auto;
-    }
+@media screen and (max-width: 560px) {
+    .form { grid-template-columns: minmax(0, 1fr); }
 }
 
 /* Ukuran kertas cetak: F4 sebagai bawaan, A4 dapat dipilih */
@@ -383,7 +395,7 @@ body.paper-a4 .paper {
 <body>
 
 <header class="top">
-    <h1>APLIKASI SURAT PERINGATAN</h1>
+    <h1>SURAT PERINGATAN</h1>
     <div>PT BPR BKK WONOGIRI (Perseroda)</div>
 </header>
 
@@ -529,6 +541,11 @@ body.paper-a4 .paper {
     </div>
 
     <div class="buttons">
+        <button class="print" id="btnTemplateExcel" type="button">Unduh Template Excel</button>
+        <button class="print" id="btnImportExcel" type="button">Impor Excel</button>
+        <input id="fileExcel" type="file" accept=".xlsx,.xls,.csv" hidden>
+    </div>
+    <div class="buttons">
         <button class="reset" id="reset" type="button">Reset</button>
         <button class="print" id="btnSimpan" type="button">Simpan</button>
     </div>
@@ -538,7 +555,7 @@ body.paper-a4 .paper {
     </div>
 
     <p class="small">
-        Data formulir disimpan otomatis di browser ini. Gunakan Backup Data untuk mengunduh salinan data sebagai file JSON.
+        Unduh template Excel, isi satu baris data, lalu pilih Impor Excel. Setelah diimpor, semua kolom tetap dapat diedit di formulir. Data juga tersimpan otomatis di browser ini.
     </p>
 </section>
 
@@ -1087,6 +1104,106 @@ $('reset').addEventListener('click', () => {
     selectOffice(false);
     update();
     saveForm();
+});
+
+
+// Excel import/export template. SheetJS dipakai untuk membaca/menulis file XLSX.
+const excelFields = [
+    ['jenis','Jenis Surat (I/II/III)'],['noSurat','Nomor Surat'],['tglSurat','Tanggal Surat (YYYY-MM-DD)'],
+    ['lampiran','Lampiran'],['noSPK','Nomor SPK'],['tglSPK','Tanggal SPK (YYYY-MM-DD)'],
+    ['kantor','Pilih Kantor'],['alamatKantor','Alamat Kantor'],['pemimpin','Nama Pemimpin'],
+    ['jabatan','Jabatan Penandatangan'],['hpKantor','Nomor HP / Telepon Kantor'],['nama','Nama Debitur'],
+    ['namaAgunan','Nama Pemilik Agunan'],['alamatDebitur','Alamat Debitur'],['rekening','Nomor Rekening'],
+    ['hpDebitur','Nomor HP Debitur'],['pokok','Tunggakan Pokok (Rp)'],['bunga','Tunggakan Bunga (Rp)'],
+    ['persen','Denda (%)'],['nominalDenda','Nominal Denda Manual (Rp, kosong = otomatis)'],
+    ['hari','Batas Waktu (jumlah hari)'],['tglBatas','Tanggal Paling Lambat (YYYY-MM-DD)'],['ukuranKertas','Ukuran Cetak (F4/A4)']
+];
+function loadSheetJS() {
+    if (window.XLSX) return Promise.resolve();
+    if (window._xlsxLoading) return window._xlsxLoading;
+    window._xlsxLoading = new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js';
+        script.onload = resolve;
+        script.onerror = () => reject(new Error('Library Excel tidak dapat dimuat. Pastikan internet aktif, atau gunakan file CSV.'));
+        document.head.appendChild(script);
+    });
+    return window._xlsxLoading;
+}
+function templateRows() {
+    const headers = excelFields.map(f => f[1]);
+    const example = excelFields.map(([id]) => {
+        const examples = {jenis:'I',lampiran:'-',kantor:'Kantor Pusat Operasional',jabatan:'Pemimpin KPO',pokok:0,bunga:0,persen:0,hari:7,ukuranKertas:'F4'};
+        return Object.prototype.hasOwnProperty.call(examples,id) ? examples[id] : '';
+    });
+    return {headers, example};
+}
+$('btnTemplateExcel').addEventListener('click', async () => {
+    try {
+        await loadSheetJS();
+        const {headers, example} = templateRows();
+        const ws = XLSX.utils.aoa_to_sheet([headers, example]);
+        ws['!cols'] = headers.map(h => ({wch: Math.max(18, h.length + 3)}));
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'Data Surat');
+        const guide = XLSX.utils.aoa_to_sheet([
+            ['PETUNJUK PENGISIAN TEMPLATE SURAT PERINGATAN'],
+            ['Isi data pada baris ke-2 di bawah judul kolom. Jangan mengubah nama judul kolom.'],
+            ['Jenis Surat: I, II, atau III. Ukuran Cetak: F4 atau A4.'],
+            ['Format tanggal: YYYY-MM-DD, contoh 2026-10-29.'],
+            ['Kolom nominal denda boleh dikosongkan agar dihitung otomatis berdasarkan tunggakan dan persentase.'],
+            ['Sesudah impor, data tetap bisa diedit langsung pada formulir aplikasi.']
+        ]);
+        XLSX.utils.book_append_sheet(wb, guide, 'Petunjuk');
+        XLSX.writeFile(wb, 'Template_Input_Surat_Peringatan_BPR.xlsx');
+    } catch (e) { alert(e.message || 'Template Excel gagal dibuat.'); }
+});
+$('btnImportExcel').addEventListener('click', () => $('fileExcel').click());
+$('fileExcel').addEventListener('change', async (event) => {
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
+    try {
+        await loadSheetJS();
+        const data = await file.arrayBuffer();
+        const wb = file.name.toLowerCase().endsWith('.csv')
+            ? XLSX.read(new TextDecoder('utf-8').decode(data), {type:'string'})
+            : XLSX.read(data, {type:'array', cellDates:false});
+        const ws = wb.Sheets[wb.SheetNames[0]];
+        const rows = XLSX.utils.sheet_to_json(ws, {header:1, defval:''});
+        if (rows.length < 2) throw new Error('File belum berisi baris data. Isi data pada baris ke-2 template Excel.');
+        const headers = rows[0].map(v => String(v).trim());
+        const row = rows.find((r,i) => i > 0 && r.some(v => String(v).trim() !== ''));
+        if (!row) throw new Error('Tidak ditemukan baris data yang terisi.');
+        const normalized = new Map(excelFields.map(([id,label]) => [label.toLowerCase(), id]));
+        const idToLabel = new Map(excelFields.map(([id,label]) => [id.toLowerCase(), id]));
+        let applied = 0;
+        headers.forEach((header, i) => {
+            const key = String(header || '').toLowerCase();
+            const id = normalized.get(key) || idToLabel.get(key);
+            if (!id || $(id).disabled) return;
+            let value = row[i];
+            if (value === undefined || value === null) return;
+            if (['tglSurat','tglSPK','tglBatas'].includes(id) && typeof value === 'number') {
+                const d = XLSX.SSF.parse_date_code(value);
+                if (d) value = `${d.y}-${String(d.m).padStart(2,'0')}-${String(d.d).padStart(2,'0')}`;
+            }
+            value = String(value).trim();
+            if (id === 'jenis') value = value.replace(/^SP\s*/i,'').toUpperCase();
+            if (id === 'ukuranKertas') value = value.toUpperCase();
+            const el = $(id);
+            if (el && (id !== 'kantor' || Array.from(el.options).some(o => o.value === value))) {
+                el.value = value;
+                applied++;
+            }
+        });
+        if (['I','II','III'].includes($('jenis').value) === false) $('jenis').value = 'I';
+        if (!['F4','A4'].includes($('ukuranKertas').value)) $('ukuranKertas').value = 'F4';
+        if ($('tglSurat').value && !$('tglBatas').value) $('tglBatas').value = addDays($('tglSurat').value, Math.max(0, Number($('hari').value)||0));
+        applyPaperSize(); update(); saveForm();
+        alert(`Impor berhasil. ${applied} kolom diisi. Data masih dapat diedit pada formulir.`);
+    } catch (e) {
+        alert('Gagal mengimpor Excel: ' + (e.message || 'Format file tidak sesuai template.'));
+    } finally { event.target.value = ''; }
 });
 
 setupOffices();
