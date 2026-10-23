@@ -253,10 +253,20 @@ body {
     }
 }
 
-/* UKURAN KERTAS F4 */
-@page {
+/* Ukuran kertas cetak: F4 sebagai bawaan, A4 dapat dipilih */
+@page f4 {
     size: 215mm 330mm;
     margin: 0;
+}
+@page a4 {
+    size: 210mm 297mm;
+    margin: 0;
+}
+.paper {
+    page: f4;
+}
+body.paper-a4 .paper {
+    page: a4;
 }
 
 @media print {
@@ -348,6 +358,23 @@ body {
     .note {
         margin-top: 7px !important;
         font-size: 9pt !important;
+    }
+
+    /* Penyesuaian khusus saat mencetak A4 */
+    body.paper-a4,
+    body.paper-a4 html {
+        width: 210mm !important;
+    }
+    body.paper-a4 .layout,
+    body.paper-a4 .preview {
+        width: 210mm !important;
+    }
+    body.paper-a4 .paper {
+        width: 210mm !important;
+        height: 297mm !important;
+        min-height: 0 !important;
+        padding: 35mm 15mm 8mm !important;
+        page: a4 !important;
     }
 }
 </style>
@@ -470,7 +497,7 @@ body {
 
     <div class="field">
         <label for="persen">Denda (%)</label>
-        <input id="persen" type="number" min="0" step="0.01" value="0.5">
+        <input id="persen" type="number" min="0" step="0.01" value="0">
     </div>
 
     <div class="field">
@@ -492,13 +519,26 @@ body {
         <input id="tglBatas" type="date">
     </div>
 
+    <div class="field">
+        <label for="ukuranKertas">Ukuran Cetak</label>
+        <select id="ukuranKertas">
+            <option value="F4">F4 (215 × 330 mm)</option>
+            <option value="A4">A4 (210 × 297 mm)</option>
+        </select>
+        <small>Pilih ukuran kertas sebelum menekan tombol cetak.</small>
+    </div>
+
     <div class="buttons">
         <button class="reset" id="reset" type="button">Reset</button>
+        <button class="print" id="btnSimpan" type="button">Simpan</button>
+    </div>
+    <div class="buttons">
+        <button class="reset" id="btnBackup" type="button">Backup Data</button>
         <button class="print" id="btnPrint" type="button">Cetak / Simpan PDF</button>
     </div>
 
     <p class="small">
-        Data formulir disimpan otomatis di browser ini.
+        Data formulir disimpan otomatis di browser ini. Gunakan Backup Data untuk mengunduh salinan data sebagai file JSON.
     </p>
 </section>
 
@@ -530,12 +570,11 @@ body {
         </div>
     </div>
 
-    <p class="date-right" id="pTanggal"></p>
 
     <div class="letter">
         <p>Dengan hormat,</p>
 
-        <p style="text-indent:28px">
+        <p id="pPembuka" style="text-indent:28px">
             Menunjuk Surat Perjanjian Kredit Nomor
             <strong id="pSPK">-</strong> tanggal
             <strong id="pTglSPK">-</strong>, melalui surat ini kami
@@ -549,19 +588,19 @@ body {
         <table class="debt">
             <tr>
                 <td>Tunggakan Pokok</td><td>:</td>
-                <td id="pPokok">Rp 119.985.000</td>
+                <td id="pPokok">Rp 0</td>
             </tr>
             <tr>
                 <td>Tunggakan Bunga</td><td>:</td>
-                <td id="pBunga">Rp 220.850.000</td>
+                <td id="pBunga">Rp 0</td>
             </tr>
             <tr>
                 <td>Denda</td><td>:</td>
-                <td id="pDenda">Rp 1.704.175</td>
+                <td id="pDenda">Rp 0</td>
             </tr>
             <tr class="sum">
                 <td>Total Tunggakan</td><td>:</td>
-                <td id="pTotal">Rp 342.539.175</td>
+                <td id="pTotal">Rp 0</td>
             </tr>
         </table>
 
@@ -570,13 +609,13 @@ body {
             <strong class="terbilang-nominal" id="pNilaiTerbilang">-</strong>
         </p>
 
-        <p style="text-indent:28px">
+        <p id="pPeringatan" style="text-indent:28px">
             Berdasarkan hal tersebut di atas, untuk menghindari bertambahnya
             beban bunga dan denda kredit serta untuk menjaga reputasi perbankan
             Saudara tetap terjaga dengan baik, kami harap Saudara
             <strong>SEGERA</strong> menyelesaikan seluruh kewajiban sebagaimana
             tersebut di atas paling lambat hari
-            <strong id="pHariTanggal">-</strong>.
+            <span id="pHariTanggal">-</span>.
         </p>
 
         <p style="text-indent:28px">
@@ -599,7 +638,7 @@ body {
 
     <div class="copy">
         <strong>Tembusan:</strong>
-        <p>1. Pemilik Agunan (<strong id="pNamaAgunan">Atas Nama (-)</strong>)</p>
+        <p>1. Pemilik Agunan: <strong id="pNamaAgunan">-</strong></p>
         <p>2. Arsip.</p>
     </div>
 
@@ -624,6 +663,7 @@ body {
 
 const $ = id => document.getElementById(id);
 const STORAGE_KEY = 'suratPeringatanBPR_data_v1';
+const PAPER_KEY = 'suratPeringatanBPR_paper_size_v1';
 
 const offices = {
     'Kantor Pusat Operasional': {
@@ -724,6 +764,14 @@ function tanggal(value, weekday = false) {
     });
 }
 
+// Format batas waktu tanpa pengulangan kata hari/tanggal.
+function formatHariTanggal(value) {
+    if (!value) return '................................';
+    const d = new Date(value + 'T12:00:00');
+    const hari = d.toLocaleDateString('id-ID', { weekday: 'long' });
+    return '<strong>' + hari + '</strong> tanggal <strong>' + tanggal(value) + '</strong>';
+}
+
 function rp(value) {
     return 'Rp ' + Math.round(value || 0).toLocaleString('id-ID');
 }
@@ -792,6 +840,39 @@ function loadForm() {
     }
 }
 
+function applyPaperSize() {
+    const size = $('ukuranKertas').value || 'F4';
+    document.body.classList.toggle('paper-a4', size === 'A4');
+    try { localStorage.setItem(PAPER_KEY, size); } catch (e) {}
+}
+
+function collectFormData() {
+    const data = {};
+    document.querySelectorAll('.form input, .form select, .form textarea')
+        .forEach(el => { if (el.id) data[el.id] = el.value; });
+    data.ukuranKertas = $('ukuranKertas').value || 'F4';
+    return data;
+}
+
+function backupData() {
+    const payload = {
+        aplikasi: 'Surat Peringatan - PT BPR BKK Wonogiri',
+        versi: 1,
+        waktuBackup: new Date().toISOString(),
+        dataFormulir: collectFormData()
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Backup_Surat_Peringatan_' + dateNow() + '.json';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    alert('Backup berhasil diunduh. Simpan file JSON ini di tempat yang aman.');
+}
+
 function setupOffices() {
     Object.keys(offices).forEach(name => {
         const option = document.createElement('option');
@@ -821,10 +902,58 @@ function selectOffice(shouldSave = true) {
     if (shouldSave) saveForm();
 }
 
+function updateLetterTemplate(jenis) {
+    const pembuka = $('pPembuka');
+    const peringatan = $('pPeringatan');
+    if (jenis === 'II') {
+        pembuka.innerHTML = `Menunjuk Surat Perjanjian Kredit Nomor
+            <strong id="pSPK">-</strong> tanggal <strong id="pTglSPK">-</strong>, dan
+            Surat Peringatan I kami sebelumnya, melalui surat ini kami beritahukan
+            bahwa pinjaman Saudara dengan nomor rekening <strong id="pRekening">-</strong>,
+            menurut catatan administrasi yang ada pada sistem kami posisi tanggal
+            <strong id="pPosisi">-</strong>, Saudara masih mempunyai tunggakan
+            pembayaran kredit sebagai berikut:`;
+        peringatan.innerHTML = `Berdasarkan hal tersebut di atas, kami memperingatkan kembali
+            Saudara untuk <strong>SEGERA</strong> menyelesaikan seluruh kewajiban sebagaimana
+            tersebut di atas paling lambat hari <span id="pHariTanggal">-</span>, dan
+            selanjutnya untuk lebih tertib membayar angsuran sesuai dengan Perjanjian Kredit
+            yang telah disepakati. Apabila sampai batas waktu tersebut Saudara belum
+            melunasi/menyelesaikan tunggakan kredit sebagaimana tersebut di atas, maka kami
+            akan mengambil tindakan sesuai ketentuan yang berlaku.`;
+    } else if (jenis === 'III') {
+        pembuka.innerHTML = `Menunjuk Surat Perjanjian Kredit Nomor
+            <strong id="pSPK">-</strong> tanggal <strong id="pTglSPK">-</strong>, dan
+            Surat Peringatan I dan II kami sebelumnya, melalui surat ini kami beritahukan
+            bahwa pinjaman Saudara dengan nomor rekening <strong id="pRekening">-</strong>,
+            menurut catatan administrasi yang ada pada sistem kami posisi tanggal
+            <strong id="pPosisi">-</strong>, Saudara masih mempunyai tunggakan
+            pembayaran kredit sebagai berikut:`;
+        peringatan.innerHTML = `Berdasarkan hal tersebut di atas, kami memperingatkan kembali
+            Saudara dan sekaligus peringatan terakhir untuk <strong>SEGERA</strong>
+            menyelesaikan seluruh kewajiban sebagaimana tersebut di atas, paling lambat hari
+            <span id="pHariTanggal">-</span>. Apabila sampai batas waktu tersebut Saudara
+            belum melunasi/menyelesaikan tunggakan kredit sebagaimana tersebut di atas, maka
+            kami akan mengambil tindakan sesuai ketentuan yang berlaku.`;
+    } else {
+        pembuka.innerHTML = `Menunjuk Surat Perjanjian Kredit Nomor
+            <strong id="pSPK">-</strong> tanggal <strong id="pTglSPK">-</strong>, melalui
+            surat ini kami memberitahukan bahwa fasilitas Saudara dengan nomor rekening
+            <strong id="pRekening">-</strong>, menurut catatan administrasi yang ada pada
+            sistem kami posisi tanggal <strong id="pPosisi">-</strong>, Saudara mempunyai
+            tunggakan pembayaran kredit sebagai berikut:`;
+        peringatan.innerHTML = `Berdasarkan hal tersebut di atas, untuk menghindari bertambahnya
+            beban bunga dan denda kredit serta untuk menjaga reputasi perbankan Saudara tetap
+            terjaga dengan baik, kami harap Saudara <strong>SEGERA</strong> menyelesaikan
+            seluruh kewajiban sebagaimana tersebut di atas paling lambat hari
+            <span id="pHariTanggal">-</span>.`;
+    }
+}
+
 function update() {
     const officeName = $('kantor').value;
     const officeData = offices[officeName] || {};
     const jenis = $('jenis').value;
+    updateLetterTemplate(jenis);
 
     const pokok = Math.max(0, Number($('pokok').value) || 0);
     const bunga = Math.max(0, Number($('bunga').value) || 0);
@@ -847,13 +976,12 @@ function update() {
 
     $('pNama').textContent = $('nama').value.trim() || '................................';
     $('pAlamatDebitur').textContent = $('alamatDebitur').value.trim();
-    $('pNamaAgunan').textContent = 'Atas Nama ' + ($('namaAgunan').value.trim() || '(-)');
+    $('pNamaAgunan').textContent = $('namaAgunan').value.trim() || '-';
 
-    $('pTanggal').textContent = (officeData.kota || 'Wonogiri') + ', ' + tanggal(tglSurat);
     $('pSPK').textContent = $('noSPK').value.trim() || '-';
-    $('pTglSPK').textContent = tanggal($('tglSPK').value);
+    $('pTglSPK').textContent = $('tglSPK').value ? tanggal($('tglSPK').value) : '';
     $('pRekening').textContent = $('rekening').value.trim() || '-';
-    $('pPosisi').textContent = tanggal(tglSurat);
+    $('pPosisi').textContent = tglSurat ? tanggal(tglSurat) : '';
 
     $('pPokok').textContent = rp(pokok);
     $('pBunga').textContent = rp(bunga);
@@ -861,11 +989,9 @@ function update() {
     $('pTotal').textContent = rp(total);
     $('pNilaiTerbilang').textContent = terbilang(total);
 
-    $('pHariTanggal').textContent = tglBatas
-        ? tanggal(tglBatas, true) + ', tanggal ' + tanggal(tglBatas)
-        : '-';
+    $('pHariTanggal').innerHTML = formatHariTanggal(tglBatas);
 
-    $('pKotaTanggal').textContent = (officeData.kota || 'Wonogiri') + ', ' + tanggal(tglSurat);
+    $('pKotaTanggal').textContent = tglSurat ? (officeData.kota || 'Wonogiri') + ', ' + tanggal(tglSurat) : (officeData.kota || 'Wonogiri') + ', ................................';
     $('pKantorSign').textContent = officeName;
     $('pPemimpin').textContent = $('pemimpin').value.trim() || '................................';
     $('pJabatan').textContent =
@@ -907,8 +1033,26 @@ document.querySelectorAll('.form input, .form select, .form textarea')
         }
     });
 
+$('ukuranKertas').addEventListener('change', () => {
+    applyPaperSize();
+    saveForm();
+});
+
+$('btnSimpan').addEventListener('click', () => {
+    update();
+    saveForm();
+    alert('Data formulir berhasil disimpan di browser ini.');
+});
+
+$('btnBackup').addEventListener('click', () => {
+    update();
+    saveForm();
+    backupData();
+});
+
 $('btnPrint').addEventListener('click', () => {
     update();
+    applyPaperSize();
     window.print();
 });
 
@@ -923,7 +1067,7 @@ $('reset').addEventListener('click', () => {
 
     $('jenis').value = 'I';
     $('noSurat').value = '';
-    $('tglSurat').value = dateNow();
+    $('tglSurat').value = '';
     $('lampiran').value = '-';
     $('noSPK').value = '';
     $('tglSPK').value = '';
@@ -934,10 +1078,10 @@ $('reset').addEventListener('click', () => {
     $('hpDebitur').value = '';
     $('pokok').value = 0;
     $('bunga').value = 0;
-    $('persen').value = 2.50;
+    $('persen').value = 0;
     $('nominalDenda').value = '';
     $('hari').value = 7;
-    $('tglBatas').value = addDays(dateNow(), 7);
+    $('tglBatas').value = '';
     $('kantor').value = 'Kantor Pusat Operasional';
 
     selectOffice(false);
@@ -948,10 +1092,15 @@ $('reset').addEventListener('click', () => {
 setupOffices();
 
 if (!loadForm()) {
-    $('tglSurat').value = dateNow();
-    $('tglBatas').value = addDays(dateNow(), 7);
+    $('tglSurat').value = '';
+    $('tglBatas').value = '';
     selectOffice(false);
 }
+try {
+    const savedPaper = localStorage.getItem(PAPER_KEY);
+    if (savedPaper === 'A4' || savedPaper === 'F4') $('ukuranKertas').value = savedPaper;
+} catch (e) {}
+applyPaperSize();
 
 update();
 </script>
