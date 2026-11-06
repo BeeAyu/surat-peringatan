@@ -493,11 +493,6 @@ body.paper-a4 .paper {
         <input id="rekening">
     </div>
 
-    <div class="field">
-        <label for="hpDebitur">Nomor HP Debitur</label>
-        <input id="hpDebitur">
-    </div>
-
     <div class="sect">RINCIAN TUNGGAKAN</div>
 
     <div class="field">
@@ -512,14 +507,14 @@ body.paper-a4 .paper {
 
     <div class="field">
         <label for="persen">Denda (%)</label>
-        <input id="persen" type="number" min="0" step="0.01" value="0">
+        <input id="persen" type="number" min="0" step="0.01" value="2.50">
     </div>
 
     <div class="field">
         <label for="nominalDenda">Nominal Denda Manual (Rp)</label>
         <input id="nominalDenda" type="number" min="0" step="1"
                placeholder="Kosongkan untuk otomatis">
-        <small>Jika diisi, nilai ini dipakai. Jika kosong, denda dihitung otomatis.</small>
+        <small>Persentase awal 2,50% dan dapat diubah. Isi nominal manual jika ingin menentukan denda sendiri; kosongkan agar dihitung otomatis dari tunggakan pokok + bunga × persentase.</small>
     </div>
 
     <div class="sect">BATAS WAKTU</div>
@@ -690,73 +685,73 @@ const offices = {
         alamat: 'Jalan Jenderal Sudirman No. 234, Wonogiri',
         pemimpin: 'DWI PRIHARINI, SE',
         kota: 'Wonogiri',
-        hp: '081236996616'
+        hp: '0273-321000'
     },
     'Kantor Cabang Ngadirojo': {
         alamat: 'Jl. Kepodang No. 4 Ngadirojo 57681 Tlp. 0273.5327108',
         pemimpin: 'TOTOK GATOT WALUYO, SE',
         kota: 'Ngadirojo',
-        hp: '085290767707'
+        hp: '081234567801'
     },
     'Kantor Cabang Girimarto': {
         alamat: 'Jl. Sinuwun No. 29 Tambak Merang, Girimarto Telp. 0273-5316114',
         pemimpin: 'BUDI PURWANTOR, SE',
         kota: 'Girimarto',
-        hp: '081225181522'
+        hp: '081234567802'
     },
     'Kantor Cabang Jatipurno': {
         alamat: 'Jl. Arjuno No. 20 Jatipurno, Wonogiri',
         pemimpin: 'PUGUH ALDOKO P',
         kota: 'Jatipurno',
-        hp: '08122625585'
+        hp: '081234567803'
     },
     'Kantor Cabang Jatiroto': {
         alamat: 'Jl. Raya Jatiroto No. 68 Jatiroto, Wonogiri',
         pemimpin: 'UMAYA ISMARWATI',
         kota: 'Jatiroto',
-        hp: '082221143682'
+        hp: '081234567804'
     },
     'Kantor Cabang Slogohimo': {
         alamat: 'Jl. Pungawan No. 1 Slogohimo, Wonogiri',
         pemimpin: 'YETTY DWIAN APRIANTARI',
         kota: 'Slogohimo',
-        hp: '082137528194'
+        hp: '081234567805'
     },
     'Kantor Cabang Purwantoro': {
         alamat: 'Jl. Pemuda No. 35 Purwantoro, Wonogiri',
         pemimpin: 'TEGUH SUMARTONO',
         kota: 'Purwantoro',
-        hp: '085290048999'
+        hp: '081234567806'
     },
     'Kantor Cabang Tirtomoyo': {
         alamat: 'Jl. Raya Tirtomoyo No. 51 Tirtomoyo, Wonogiri',
         pemimpin: 'SURJANA',
         kota: 'Tirtomoyo',
-        hp: '082243347568'
+        hp: '081234567807'
     },
     'Kantor Cabang Baturetno': {
         alamat: 'Jl. Raya Baturetno - Wonogiri',
         pemimpin: 'SUSILO',
         kota: 'Baturetno',
-        hp: '082243180476'
+        hp: '081234567808'
     },
     'Kantor Cabang Batuwarno': {
         alamat: 'Jl. Raya Batuwarno - Karangtengah Km 12 Telp. 0273-3302666',
         pemimpin: 'ANOM EKO BAWONO',
         kota: 'Batuwarno',
-        hp: '085290028011'
+        hp: '081234567809'
     },
     'Kantor Cabang Giriwoyo': {
         alamat: 'Jl. Wijaya Kusuma No. 94 Giriwoyo, Wonogiri',
         pemimpin: 'ENDANG SUHARNIATI',
         kota: 'Giriwoyo',
-        hp: '082134330890'
+        hp: '081234567810'
     },
     'Kantor Cabang Giritontro': {
         alamat: 'Jl. Raya Giritontro, Wonogiri',
         pemimpin: 'ARWINTO ADI',
         kota: 'Giritontro',
-        hp: '082243347598'
+        hp: '081234567811'
     }
 };
 
@@ -848,6 +843,10 @@ function loadForm() {
                 el.value = value;
             }
         });
+        // Migrasi nilai default versi lama (0) ke persentase awal 2,50%.
+        if (data.persen === undefined || data.persen === '' || Number(data.persen) === 0) {
+            $('persen').value = '2.50';
+        }
 
         if (data.kantor && offices[data.kantor]) {
             $('kantor').value = data.kantor;
@@ -1035,8 +1034,11 @@ function update() {
     $('pAlamatDebitur').textContent = $('alamatDebitur').value.trim();
     $('pNamaAgunan').textContent = $('namaAgunan').value.trim() || '-';
 
-    $('pSPK').textContent = $('noSPK').value.trim() || '-';
-    $('pTglSPK').textContent = $('tglSPK').value ? tanggal($('tglSPK').value) : '';
+    // Elemen SPK tidak dibuat pada template Nota Tagihan; perbarui hanya jika tersedia.
+    const pSPK = $('pSPK');
+    if (pSPK) pSPK.textContent = $('noSPK').value.trim() || '-';
+    const pTglSPK = $('pTglSPK');
+    if (pTglSPK) pTglSPK.textContent = $('tglSPK').value ? tanggal($('tglSPK').value) : '';
     $('pRekening').textContent = $('rekening').value.trim() || '-';
     $('pPosisi').textContent = tglSurat ? tanggal(tglSurat) : '';
 
@@ -1108,8 +1110,32 @@ $('btnBackup').addEventListener('click', () => {
     backupData();
 });
 
+function validateBeforePrint() {
+    const jenis = $('jenis').value;
+    const required = [
+        ['noSurat', 'Nomor Surat'], ['tglSurat', 'Tanggal Surat'],
+        ['kantor', 'Kantor Penerbit'], ['alamatKantor', 'Alamat Kantor'],
+        ['pemimpin', 'Nama Pemimpin'], ['hpPetugas', 'Nomor HP Petugas'],
+        ['nama', 'Nama Debitur'], ['alamatDebitur', 'Alamat Debitur'],
+        ['rekening', 'Nomor Rekening'],
+        ['tglBatas', jenis === 'TAGIHAN' ? 'Tanggal Penyelesaian Paling Lambat' : 'Tanggal Paling Lambat']
+    ];
+    if (jenis !== 'TAGIHAN') {
+        required.push(['noSPK', 'Nomor SPK'], ['tglSPK', 'Tanggal SPK']);
+    }
+    const missing = required.filter(([id]) => !$(id).value.trim());
+    if (missing.length) {
+        alert('Cetak dibatalkan. Mohon lengkapi data berikut terlebih dahulu:\n\n' +
+            missing.map(([, label], i) => (i + 1) + '. ' + label).join('\n'));
+        $(missing[0][0]).focus();
+        return false;
+    }
+    return true;
+}
+
 $('btnPrint').addEventListener('click', () => {
     update();
+    if (!validateBeforePrint()) return;
     applyPaperSize();
     window.print();
 });
@@ -1133,11 +1159,10 @@ $('reset').addEventListener('click', () => {
     $('namaAgunan').value = '';
     $('alamatDebitur').value = '';
     $('rekening').value = '';
-    $('hpDebitur').value = '';
     $('hpPetugas').value = '';
     $('pokok').value = 0;
     $('bunga').value = 0;
-    $('persen').value = 0;
+    $('persen').value = '2.50';
     $('nominalDenda').value = '';
     $('hari').value = 7;
     $('tglBatas').value = '';
@@ -1156,8 +1181,8 @@ const excelFields = [
     ['kantor','Pilih Kantor'],['alamatKantor','Alamat Kantor'],['pemimpin','Nama Pemimpin'],
     ['jabatan','Jabatan Penandatangan'],['hpPetugas','Nomor HP Petugas'],['nama','Nama Debitur'],
     ['namaAgunan','Nama Pemilik Agunan'],['alamatDebitur','Alamat Debitur'],['rekening','Nomor Rekening'],
-    ['hpDebitur','Nomor HP Debitur'],['pokok','Tunggakan Pokok (Rp)'],['bunga','Tunggakan Bunga (Rp)'],
-    ['persen','Denda (%)'],['nominalDenda','Nominal Denda Manual (Rp, kosong = otomatis)'],
+    ['pokok','Tunggakan Pokok (Rp)'],['bunga','Tunggakan Bunga (Rp)'],
+    ['persen','Persentase Denda (%) — default 2.50'],['nominalDenda','Nominal Denda Manual (Rp, kosong = otomatis)'],
     ['hari','Batas Waktu (jumlah hari)'],['tglBatas','Tanggal Paling Lambat (YYYY-MM-DD)'],['ukuranKertas','Ukuran Cetak (F4/A4)']
 ];
 function loadSheetJS() {
@@ -1175,7 +1200,7 @@ function loadSheetJS() {
 function templateRows() {
     const headers = excelFields.map(f => f[1]);
     const example = excelFields.map(([id]) => {
-        const examples = {jenis:'I',lampiran:'-',kantor:'Kantor Pusat Operasional',jabatan:'Pemimpin KPO',pokok:0,bunga:0,persen:0,hari:7,ukuranKertas:'F4'};
+        const examples = {jenis:'I',lampiran:'-',kantor:'Kantor Pusat Operasional',jabatan:'Pemimpin KPO',pokok:0,bunga:0,persen:2.5,hari:7,ukuranKertas:'F4'};
         return Object.prototype.hasOwnProperty.call(examples,id) ? examples[id] : '';
     });
     return {headers, example};
@@ -1251,8 +1276,8 @@ $('fileExcel').addEventListener('change', async (event) => {
 setupOffices();
 
 if (!loadForm()) {
-    $('tglSurat').value = '';
-    $('tglBatas').value = '';
+    $('tglSurat').value = dateNow();
+    $('tglBatas').value = addDays($('tglSurat').value, 7);
     selectOffice(false);
 }
 try {
