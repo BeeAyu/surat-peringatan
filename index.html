@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Surat Peringatan - PT BPR BKK Wonogiri</title>
+<title>Surat Peringatan & Nota Tagihan - PT BPR BKK Wonogiri</title>
 
 <style>
 * {
@@ -395,7 +395,7 @@ body.paper-a4 .paper {
 <body>
 
 <header class="top">
-    <h1>SURAT PERINGATAN</h1>
+    <h1>SURAT PERINGATAN & NOTA TAGIHAN</h1>
     <div>PT BPR BKK WONOGIRI (Perseroda)</div>
 </header>
 
@@ -409,6 +409,7 @@ body.paper-a4 .paper {
     <div class="field">
         <label for="jenis">Jenis Surat</label>
         <select id="jenis">
+            <option value="TAGIHAN">Nota Tagihan Kredit</option>
             <option value="I">SP I</option>
             <option value="II">SP II</option>
             <option value="III">SP III</option>
@@ -464,8 +465,10 @@ body.paper-a4 .paper {
     </div>
 
     <div class="field">
-        <label for="hpKantor">Nomor HP / Telepon Kantor</label>
-        <input id="hpKantor" placeholder="Nomor kontak kantor">
+        <label for="hpPetugas">Nomor HP Petugas</label>
+        <input id="hpPetugas" type="tel" inputmode="tel" autocomplete="tel"
+               placeholder="Masukkan nomor HP petugas (contoh: 08xxxxxxxxxx)">
+        <small>Otomatis mengikuti nomor HP pemimpin kantor/cabang dari data HTML. Nomor dapat diedit dan akan tampil pada laporan.</small>
     </div>
 
     <div class="sect">DATA DEBITUR</div>
@@ -635,7 +638,7 @@ body.paper-a4 .paper {
             <span id="pHariTanggal">-</span>.
         </p>
 
-        <p style="text-indent:28px">
+        <p id="pPenutup" style="text-indent:28px">
             Demikian <strong id="pPerihalIsi">Surat Peringatan I</strong> ini
             disampaikan untuk menjadi perhatian, dan atas kerja sama yang baik
             disampaikan terima kasih.
@@ -655,8 +658,8 @@ body.paper-a4 .paper {
 
     <div class="copy">
         <strong>Tembusan:</strong>
-        <p>1. Pemilik Agunan: <strong id="pNamaAgunan">-</strong></p>
-        <p>2. Arsip.</p>
+        <p id="pTembusanAgunan">1. Pemilik Agunan: <strong id="pNamaAgunan">-</strong></p>
+        <p id="pTembusanArsip">2. Arsip.</p>
     </div>
 
     <div class="note">
@@ -687,73 +690,73 @@ const offices = {
         alamat: 'Jalan Jenderal Sudirman No. 234, Wonogiri',
         pemimpin: 'DWI PRIHARINI, SE',
         kota: 'Wonogiri',
-        hp: '0273-321000'
+        hp: '081236996616'
     },
     'Kantor Cabang Ngadirojo': {
         alamat: 'Jl. Kepodang No. 4 Ngadirojo 57681 Tlp. 0273.5327108',
         pemimpin: 'TOTOK GATOT WALUYO, SE',
         kota: 'Ngadirojo',
-        hp: '081234567801'
+        hp: '085290767707'
     },
     'Kantor Cabang Girimarto': {
         alamat: 'Jl. Sinuwun No. 29 Tambak Merang, Girimarto Telp. 0273-5316114',
         pemimpin: 'BUDI PURWANTOR, SE',
         kota: 'Girimarto',
-        hp: '081234567802'
+        hp: '081225181522'
     },
     'Kantor Cabang Jatipurno': {
         alamat: 'Jl. Arjuno No. 20 Jatipurno, Wonogiri',
         pemimpin: 'PUGUH ALDOKO P',
         kota: 'Jatipurno',
-        hp: '081234567803'
+        hp: '08122625585'
     },
     'Kantor Cabang Jatiroto': {
         alamat: 'Jl. Raya Jatiroto No. 68 Jatiroto, Wonogiri',
         pemimpin: 'UMAYA ISMARWATI',
         kota: 'Jatiroto',
-        hp: '081234567804'
+        hp: '082221143682'
     },
     'Kantor Cabang Slogohimo': {
         alamat: 'Jl. Pungawan No. 1 Slogohimo, Wonogiri',
         pemimpin: 'YETTY DWIAN APRIANTARI',
         kota: 'Slogohimo',
-        hp: '081234567805'
+        hp: '082137528194'
     },
     'Kantor Cabang Purwantoro': {
         alamat: 'Jl. Pemuda No. 35 Purwantoro, Wonogiri',
         pemimpin: 'TEGUH SUMARTONO',
         kota: 'Purwantoro',
-        hp: '081234567806'
+        hp: '085290048999'
     },
     'Kantor Cabang Tirtomoyo': {
         alamat: 'Jl. Raya Tirtomoyo No. 51 Tirtomoyo, Wonogiri',
         pemimpin: 'SURJANA',
         kota: 'Tirtomoyo',
-        hp: '081234567807'
+        hp: '082243347568'
     },
     'Kantor Cabang Baturetno': {
         alamat: 'Jl. Raya Baturetno - Wonogiri',
         pemimpin: 'SUSILO',
         kota: 'Baturetno',
-        hp: '081234567808'
+        hp: '082243180476'
     },
     'Kantor Cabang Batuwarno': {
         alamat: 'Jl. Raya Batuwarno - Karangtengah Km 12 Telp. 0273-3302666',
         pemimpin: 'ANOM EKO BAWONO',
         kota: 'Batuwarno',
-        hp: '081234567809'
+        hp: '085290028011'
     },
     'Kantor Cabang Giriwoyo': {
         alamat: 'Jl. Wijaya Kusuma No. 94 Giriwoyo, Wonogiri',
         pemimpin: 'ENDANG SUHARNIATI',
         kota: 'Giriwoyo',
-        hp: '081234567810'
+        hp: '082134330890'
     },
     'Kantor Cabang Giritontro': {
         alamat: 'Jl. Raya Giritontro, Wonogiri',
         pemimpin: 'ARWINTO ADI',
         kota: 'Giritontro',
-        hp: '081234567811'
+        hp: '082243347598'
     }
 };
 
@@ -908,7 +911,9 @@ function selectOffice(shouldSave = true) {
 
     $('alamatKantor').value = office.alamat || '';
     $('pemimpin').value = office.pemimpin || '';
-    $('hpKantor').value = office.hp || '';
+    // Isi nomor HP pemimpin KPO/cabang dari data HTML setiap kantor dipilih.
+    // Pengguna tetap dapat mengubahnya melalui input Nomor HP Petugas.
+    $('hpPetugas').value = office.hp || '';
 
     $('jabatan').value =
         $('kantor').value === 'Kantor Pusat Operasional'
@@ -922,47 +927,79 @@ function selectOffice(shouldSave = true) {
 function updateLetterTemplate(jenis) {
     const pembuka = $('pPembuka');
     const peringatan = $('pPeringatan');
-    if (jenis === 'II') {
-        pembuka.innerHTML = `Menunjuk Surat Perjanjian Kredit Nomor
-            <strong id="pSPK">-</strong> tanggal <strong id="pTglSPK">-</strong>, dan
-            Surat Peringatan I kami sebelumnya, melalui surat ini kami beritahukan
-            bahwa pinjaman Saudara dengan nomor rekening <strong id="pRekening">-</strong>,
-            menurut catatan administrasi yang ada pada sistem kami posisi tanggal
-            <strong id="pPosisi">-</strong>, Saudara masih mempunyai tunggakan
-            pembayaran kredit sebagai berikut:`;
-        peringatan.innerHTML = `Berdasarkan hal tersebut di atas, kami memperingatkan kembali
-            Saudara untuk <strong>SEGERA</strong> menyelesaikan seluruh kewajiban sebagaimana
-            tersebut di atas paling lambat hari <span id="pHariTanggal">-</span>, dan
-            selanjutnya untuk lebih tertib membayar angsuran sesuai dengan Perjanjian Kredit
-            yang telah disepakati. Apabila sampai batas waktu tersebut Saudara belum
-            melunasi/menyelesaikan tunggakan kredit sebagaimana tersebut di atas, maka kami
-            akan mengambil tindakan sesuai ketentuan yang berlaku.`;
-    } else if (jenis === 'III') {
-        pembuka.innerHTML = `Menunjuk Surat Perjanjian Kredit Nomor
-            <strong id="pSPK">-</strong> tanggal <strong id="pTglSPK">-</strong>, dan
-            Surat Peringatan I dan II kami sebelumnya, melalui surat ini kami beritahukan
-            bahwa pinjaman Saudara dengan nomor rekening <strong id="pRekening">-</strong>,
-            menurut catatan administrasi yang ada pada sistem kami posisi tanggal
-            <strong id="pPosisi">-</strong>, Saudara masih mempunyai tunggakan
-            pembayaran kredit sebagai berikut:`;
-        peringatan.innerHTML = `Berdasarkan hal tersebut di atas, kami memperingatkan kembali
-            Saudara dan sekaligus peringatan terakhir untuk <strong>SEGERA</strong>
-            menyelesaikan seluruh kewajiban sebagaimana tersebut di atas, paling lambat hari
-            <span id="pHariTanggal">-</span>. Apabila sampai batas waktu tersebut Saudara
-            belum melunasi/menyelesaikan tunggakan kredit sebagaimana tersebut di atas, maka
-            kami akan mengambil tindakan sesuai ketentuan yang berlaku.`;
-    } else {
-        pembuka.innerHTML = `Menunjuk Surat Perjanjian Kredit Nomor
-            <strong id="pSPK">-</strong> tanggal <strong id="pTglSPK">-</strong>, melalui
-            surat ini kami memberitahukan bahwa fasilitas Saudara dengan nomor rekening
-            <strong id="pRekening">-</strong>, menurut catatan administrasi yang ada pada
-            sistem kami posisi tanggal <strong id="pPosisi">-</strong>, Saudara mempunyai
+    const penutup = $('pPenutup');
+    const isTagihan = jenis === 'TAGIHAN';
+    // Nota Tagihan hanya ditembuskan untuk arsip, tanpa pemilik agunan.
+    const tembusanAgunan = $('pTembusanAgunan');
+    if (tembusanAgunan) tembusanAgunan.style.display = isTagihan ? 'none' : '';
+    const tembusanArsip = $('pTembusanArsip');
+    if (tembusanArsip) {
+        tembusanArsip.textContent = isTagihan ? '1. Arsip.' : '2. Arsip.';
+    }
+    const batasLabel = document.querySelector('label[for="tglBatas"]');
+    if (batasLabel) batasLabel.textContent = isTagihan ? 'Tanggal Penyelesaian Paling Lambat' : 'Tanggal Paling Lambat';
+
+    // Field SPK dan batas waktu khusus SP tidak diperlukan pada Nota Tagihan.
+    ['noSPK','tglSPK','hari'].forEach(id => {
+        const el = $(id);
+        if (el && el.closest('.field')) el.closest('.field').style.display = isTagihan ? 'none' : '';
+    });
+
+    if (isTagihan) {
+        pembuka.innerHTML = `Dengan ini kami beritahukan bahwa pinjaman atas nama
+            <strong id="pNamaDalamSurat">-</strong> dengan no rekening
+            <strong id="pRekening">-</strong>, menurut perhitungan kami Saudara/i
+            sampai dengan tanggal <strong id="pPosisi">-</strong> telah mempunyai
             tunggakan pembayaran kredit sebagai berikut:`;
-        peringatan.innerHTML = `Berdasarkan hal tersebut di atas, untuk menghindari bertambahnya
-            beban bunga dan denda kredit serta untuk menjaga reputasi perbankan Saudara tetap
-            terjaga dengan baik, kami harap Saudara <strong>SEGERA</strong> menyelesaikan
-            seluruh kewajiban sebagaimana tersebut di atas paling lambat hari
-            <span id="pHariTanggal">-</span>.`;
+        peringatan.innerHTML = `Untuk menjaga hubungan baik dengan PT BPR BKK WONOGIRI
+            (Perseroda) Wonogiri dan perbankan pada umumnya serta kelancaran uang negara,
+            kami harapkan Saudara/i menyelesaikan kewajiban tersebut selambat-lambatnya
+            pada hari <span id="pHariTanggal">-</span>.`;
+        penutup.innerHTML = `Demikian untuk menjadikan perhatian dan atas tindaklanjut
+            penyelesaiannya kami ucapkan terima kasih.`;
+    } else {
+        if (jenis === 'II') {
+            pembuka.innerHTML = `Menunjuk Surat Perjanjian Kredit Nomor <strong id="pSPK">-</strong>
+                tanggal <strong id="pTglSPK">-</strong>, dan Surat Peringatan I kami sebelumnya,
+                melalui surat ini kami beritahukan bahwa pinjaman Saudara dengan nomor rekening
+                <strong id="pRekening">-</strong>, menurut catatan administrasi yang ada pada
+                sistem kami posisi tanggal <strong id="pPosisi">-</strong>, Saudara masih
+                mempunyai tunggakan pembayaran kredit sebagai berikut:`;
+            peringatan.innerHTML = `Berdasarkan hal tersebut di atas, kami memperingatkan kembali
+                Saudara untuk <strong>SEGERA</strong> menyelesaikan seluruh kewajiban sebagaimana
+                tersebut di atas paling lambat hari <span id="pHariTanggal">-</span>, dan
+                selanjutnya untuk lebih tertib membayar angsuran sesuai dengan Perjanjian Kredit
+                yang telah disepakati. Apabila sampai batas waktu tersebut Saudara belum
+                melunasi/menyelesaikan tunggakan kredit sebagaimana tersebut di atas, maka kami
+                akan mengambil tindakan sesuai ketentuan yang berlaku.`;
+        } else if (jenis === 'III') {
+            pembuka.innerHTML = `Menunjuk Surat Perjanjian Kredit Nomor <strong id="pSPK">-</strong>
+                tanggal <strong id="pTglSPK">-</strong>, dan Surat Peringatan I dan II kami
+                sebelumnya, melalui surat ini kami beritahukan bahwa pinjaman Saudara dengan
+                nomor rekening <strong id="pRekening">-</strong>, menurut catatan administrasi
+                yang ada pada sistem kami posisi tanggal <strong id="pPosisi">-</strong>,
+                Saudara masih mempunyai tunggakan pembayaran kredit sebagai berikut:`;
+            peringatan.innerHTML = `Berdasarkan hal tersebut di atas, kami memperingatkan kembali
+                Saudara dan sekaligus peringatan terakhir untuk <strong>SEGERA</strong>
+                menyelesaikan seluruh kewajiban sebagaimana tersebut di atas, paling lambat hari
+                <span id="pHariTanggal">-</span>. Apabila sampai batas waktu tersebut Saudara
+                belum melunasi/menyelesaikan tunggakan kredit sebagaimana tersebut di atas, maka
+                kami akan mengambil tindakan sesuai ketentuan yang berlaku.`;
+        } else {
+            pembuka.innerHTML = `Menunjuk Surat Perjanjian Kredit Nomor <strong id="pSPK">-</strong>
+                tanggal <strong id="pTglSPK">-</strong>, melalui surat ini kami memberitahukan
+                bahwa fasilitas Saudara dengan nomor rekening <strong id="pRekening">-</strong>,
+                menurut catatan administrasi yang ada pada sistem kami posisi tanggal
+                <strong id="pPosisi">-</strong>, Saudara mempunyai tunggakan pembayaran kredit
+                sebagai berikut:`;
+            peringatan.innerHTML = `Berdasarkan hal tersebut di atas, untuk menghindari
+                bertambahnya beban bunga dan denda kredit serta untuk menjaga reputasi perbankan
+                Saudara tetap terjaga dengan baik, kami harap Saudara <strong>SEGERA</strong>
+                menyelesaikan seluruh kewajiban sebagaimana tersebut di atas paling lambat hari
+                <span id="pHariTanggal">-</span>.`;
+        }
+        penutup.innerHTML = `Demikian <strong id="pPerihalIsi">Surat Peringatan ${jenis}</strong>
+            ini disampaikan untuk menjadi perhatian, dan atas kerja sama yang baik disampaikan terima kasih.`;
     }
 }
 
@@ -988,10 +1025,13 @@ function update() {
     $('pNoSurat').textContent = $('noSurat').value.trim() || '-';
     $('pLampiran').textContent = $('lampiran').value.trim() || '-';
 
-    $('pPerihal').textContent = 'Surat Peringatan ' + jenis;
-    $('pPerihalIsi').textContent = 'Surat Peringatan ' + jenis;
+    const namaPerihal = jenis === 'TAGIHAN' ? 'Nota Tagihan Kredit' : 'Surat Peringatan ' + jenis;
+    $('pPerihal').textContent = namaPerihal;
+    if ($('pPerihalIsi')) $('pPerihalIsi').textContent = namaPerihal;
 
     $('pNama').textContent = $('nama').value.trim() || '................................';
+    const namaDalamSurat = $('pNamaDalamSurat');
+    if (namaDalamSurat) namaDalamSurat.textContent = $('nama').value.trim() || '-';
     $('pAlamatDebitur').textContent = $('alamatDebitur').value.trim();
     $('pNamaAgunan').textContent = $('namaAgunan').value.trim() || '-';
 
@@ -1013,7 +1053,8 @@ function update() {
     $('pPemimpin').textContent = $('pemimpin').value.trim() || '................................';
     $('pJabatan').textContent =
         officeName === 'Kantor Pusat Operasional' ? 'Pemimpin KPO' : 'Pemimpin Cabang';
-    $('pHPKontak').textContent = $('hpKantor').value.trim() || '................';
+    const nomorPetugas = $('hpPetugas').value.trim();
+    $('pHPKontak').textContent = nomorPetugas || '................';
 }
 
 $('kantor').addEventListener('change', () => selectOffice(true));
@@ -1093,6 +1134,7 @@ $('reset').addEventListener('click', () => {
     $('alamatDebitur').value = '';
     $('rekening').value = '';
     $('hpDebitur').value = '';
+    $('hpPetugas').value = '';
     $('pokok').value = 0;
     $('bunga').value = 0;
     $('persen').value = 0;
@@ -1109,10 +1151,10 @@ $('reset').addEventListener('click', () => {
 
 // Excel import/export template. SheetJS dipakai untuk membaca/menulis file XLSX.
 const excelFields = [
-    ['jenis','Jenis Surat (I/II/III)'],['noSurat','Nomor Surat'],['tglSurat','Tanggal Surat (YYYY-MM-DD)'],
+    ['jenis','Jenis Surat (I/II/III/TAGIHAN)'],['noSurat','Nomor Surat'],['tglSurat','Tanggal Surat (YYYY-MM-DD)'],
     ['lampiran','Lampiran'],['noSPK','Nomor SPK'],['tglSPK','Tanggal SPK (YYYY-MM-DD)'],
     ['kantor','Pilih Kantor'],['alamatKantor','Alamat Kantor'],['pemimpin','Nama Pemimpin'],
-    ['jabatan','Jabatan Penandatangan'],['hpKantor','Nomor HP / Telepon Kantor'],['nama','Nama Debitur'],
+    ['jabatan','Jabatan Penandatangan'],['hpPetugas','Nomor HP Petugas'],['nama','Nama Debitur'],
     ['namaAgunan','Nama Pemilik Agunan'],['alamatDebitur','Alamat Debitur'],['rekening','Nomor Rekening'],
     ['hpDebitur','Nomor HP Debitur'],['pokok','Tunggakan Pokok (Rp)'],['bunga','Tunggakan Bunga (Rp)'],
     ['persen','Denda (%)'],['nominalDenda','Nominal Denda Manual (Rp, kosong = otomatis)'],
@@ -1147,15 +1189,15 @@ $('btnTemplateExcel').addEventListener('click', async () => {
         const wb = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(wb, ws, 'Data Surat');
         const guide = XLSX.utils.aoa_to_sheet([
-            ['PETUNJUK PENGISIAN TEMPLATE SURAT PERINGATAN'],
+            ['PETUNJUK PENGISIAN TEMPLATE SURAT PERINGATAN / NOTA TAGIHAN'],
             ['Isi data pada baris ke-2 di bawah judul kolom. Jangan mengubah nama judul kolom.'],
-            ['Jenis Surat: I, II, atau III. Ukuran Cetak: F4 atau A4.'],
+            ['Jenis Surat: I, II, III, atau TAGIHAN. Ukuran Cetak: F4 atau A4.'],
             ['Format tanggal: YYYY-MM-DD, contoh 2026-10-29.'],
             ['Kolom nominal denda boleh dikosongkan agar dihitung otomatis berdasarkan tunggakan dan persentase.'],
             ['Sesudah impor, data tetap bisa diedit langsung pada formulir aplikasi.']
         ]);
         XLSX.utils.book_append_sheet(wb, guide, 'Petunjuk');
-        XLSX.writeFile(wb, 'Template_Input_Surat_Peringatan_BPR.xlsx');
+        XLSX.writeFile(wb, 'Template_Input_Surat_dan_Nota_Tagihan_BPR.xlsx');
     } catch (e) { alert(e.message || 'Template Excel gagal dibuat.'); }
 });
 $('btnImportExcel').addEventListener('click', () => $('fileExcel').click());
@@ -1188,7 +1230,7 @@ $('fileExcel').addEventListener('change', async (event) => {
                 if (d) value = `${d.y}-${String(d.m).padStart(2,'0')}-${String(d.d).padStart(2,'0')}`;
             }
             value = String(value).trim();
-            if (id === 'jenis') value = value.replace(/^SP\s*/i,'').toUpperCase();
+            if (id === 'jenis') { value = value.replace(/^SP\s*/i,'').toUpperCase(); if (/NOTA\s*TAGIHAN(\s*KREDIT)?/i.test(value)) value = 'TAGIHAN'; }
             if (id === 'ukuranKertas') value = value.toUpperCase();
             const el = $(id);
             if (el && (id !== 'kantor' || Array.from(el.options).some(o => o.value === value))) {
@@ -1196,7 +1238,7 @@ $('fileExcel').addEventListener('change', async (event) => {
                 applied++;
             }
         });
-        if (['I','II','III'].includes($('jenis').value) === false) $('jenis').value = 'I';
+        if (!['I','II','III','TAGIHAN'].includes($('jenis').value)) $('jenis').value = 'I';
         if (!['F4','A4'].includes($('ukuranKertas').value)) $('ukuranKertas').value = 'F4';
         if ($('tglSurat').value && !$('tglBatas').value) $('tglBatas').value = addDays($('tglSurat').value, Math.max(0, Number($('hari').value)||0));
         applyPaperSize(); update(); saveForm();
