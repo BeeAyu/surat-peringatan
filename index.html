@@ -560,7 +560,7 @@ body.paper-a4 .paper {
 <div class="preview">
 <article class="paper" id="paper">
 
-    <!-- Kop dan logo sengaja dihilangkan karena memakai kertas kop fisik. -->
+    
 
     <div class="headgrid">
         <div class="headleft">
@@ -779,7 +779,7 @@ function tanggal(value, weekday = false) {
     });
 }
 
-// Format batas waktu tanpa pengulangan kata hari/tanggal.
+
 function formatHariTanggal(value) {
     if (!value) return '................................';
     const d = new Date(value + 'T12:00:00');
@@ -843,7 +843,7 @@ function loadForm() {
                 el.value = value;
             }
         });
-        // Migrasi nilai default versi lama (0) ke persentase awal 2,50%.
+        
         if (data.persen === undefined || data.persen === '' || Number(data.persen) === 0) {
             $('persen').value = '2.50';
         }
@@ -910,8 +910,8 @@ function selectOffice(shouldSave = true) {
 
     $('alamatKantor').value = office.alamat || '';
     $('pemimpin').value = office.pemimpin || '';
-    // Isi nomor HP pemimpin KPO/cabang dari data HTML setiap kantor dipilih.
-    // Pengguna tetap dapat mengubahnya melalui input Nomor HP Petugas.
+    
+    
     $('hpPetugas').value = office.hp || '';
 
     $('jabatan').value =
@@ -928,7 +928,7 @@ function updateLetterTemplate(jenis) {
     const peringatan = $('pPeringatan');
     const penutup = $('pPenutup');
     const isTagihan = jenis === 'TAGIHAN';
-    // Nota Tagihan hanya ditembuskan untuk arsip, tanpa pemilik agunan.
+    
     const tembusanAgunan = $('pTembusanAgunan');
     if (tembusanAgunan) tembusanAgunan.style.display = isTagihan ? 'none' : '';
     const tembusanArsip = $('pTembusanArsip');
@@ -938,7 +938,7 @@ function updateLetterTemplate(jenis) {
     const batasLabel = document.querySelector('label[for="tglBatas"]');
     if (batasLabel) batasLabel.textContent = isTagihan ? 'Tanggal Penyelesaian Paling Lambat' : 'Tanggal Paling Lambat';
 
-    // Field SPK dan batas waktu khusus SP tidak diperlukan pada Nota Tagihan.
+    
     ['noSPK','tglSPK','hari'].forEach(id => {
         const el = $(id);
         if (el && el.closest('.field')) el.closest('.field').style.display = isTagihan ? 'none' : '';
@@ -1174,7 +1174,7 @@ $('reset').addEventListener('click', () => {
 });
 
 
-// Excel import/export template. SheetJS dipakai untuk membaca/menulis file XLSX.
+
 const excelFields = [
     ['jenis','Jenis Surat (I/II/III/TAGIHAN)'],['noSurat','Nomor Surat'],['tglSurat','Tanggal Surat (YYYY-MM-DD)'],
     ['lampiran','Lampiran'],['noSPK','Nomor SPK'],['tglSPK','Tanggal SPK (YYYY-MM-DD)'],
